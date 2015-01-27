@@ -1,59 +1,79 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var fs = require('fs');
+var generators = require('yeoman-generator');
 var chalk = require('chalk');
+var fs = require('fs');
 
-var ComponentGenerator = yeoman.generators.NamedBase.extend({
+var ComponentGenerator = generators.NamedBase.extend({
 
-  detectCodeLanguage: function() {
-    this.codeFileExtension = '.js';
-  },
+    // The name `constructor` is important here
+    // constructor: function() {
+    //     // Calling the super constructor is important so our generator is correctly set up
+    //     generators.Base.apply(this, arguments);
 
-  init: function () {
-    console.log('Creating component: ' + this.name + ' ...');
-    this.componentName = this.name;
-    this.filename = this._.dasherize(this.name);
-    this.dirname = 'src/components/' + this.filename + '/';
-    this.viewModelClassName = this._.classify(this.name);
-  },
+    //     // Next, add your custom code
+    //     //this.option('coffee'); // This method adds support for a `--coffee` flag
 
-  template: function () {
-    this.copy('view.html', this.dirname + this.filename + '.html');
-    this.copy('viewmodel' + this.codeFileExtension, this.dirname + this.filename + '.js');
-  },
+    //     //TODO: Add option so that we dont have to answer prompts
 
-  addComponentRegistration: function() {
-    var startupFile = 'src/app/startup' + this.codeFileExtension;
-    
-    readIfFileExists.call(this, startupFile, function(existingContents) {
-        var existingRegistrationRegex = new RegExp('\\bko\\.components\\.register\\(\s*[\'"]' + this.filename + '[\'"]');
+    //     this.option('name');
+    // },
+
+    initializing: function() {
+        this.codeFileExtension = '.js';
+        this.startupFile = 'src/app/components' + this.codeFileExtension;
+
+        //TODO: Instead of dasherize, throw exception if name invalid?
+        this.filename = this._.dasherize(this.name);
+        this.viewModelClassName = this._.classify(this.name);
+
+        if (!this.fs.exists(this.startupFile)) {
+            this.log(chalk.magenta('The ') + chalk.green('startup') + chalk.magenta(' file is missing in the ') + chalk.green('src/app/') + chalk.magenta(' directory.'));
+            this.log(chalk.magenta('Scaffolding aborted.'));
+            process.exit(1);
+        }
+
+        this.startupFileContent = this.fs.read(this.startupFile);
+
+        // rendu a modifier framework pour ressembler à ko.components.register('nav-bar' 
+        // au lieu de framework.registerPage({name: 'test',
+
+        var existingRegistrationRegex1 = new RegExp('\\bko\\.components\\.register\\(\s*[\'"]' + this.filename + '[\'"]');
+        var existingRegistrationRegex2 = new RegExp('\\bframework\\.registerComponent\\(\s*[\'"]' + this.filename + '[\'"]');
+
+        if (existingRegistrationRegex1.exec(this.startupFileContent) || existingRegistrationRegex2.exec(this.startupFileContent)) {
+            this.log(chalk.magenta('The component ') + chalk.green(this.filename) + chalk.magenta(' is already registered in the ') + chalk.green('startup') + chalk.magenta(' file.'));
+            this.log(chalk.magenta('Scaffolding aborted.'));
+            process.exit(1);
+        }
+    },
+
+    writing: function() {
+        this.log(chalk.white('Creating the component ') + chalk.green(this.filename) + chalk.white(' ...'));
+
+        var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]';
+        var regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm');
+        var lineToAdd = 'framework.registerComponent(\'' + this.filename + '\');';
+        var newContents = this.startupFileContent.replace(regex, '$1' + lineToAdd + '\n$&');
+
+        //we write with fs (not this.fs) directly so there is no conflicter in play for this file
+        fs.writeFile(this.destinationPath(this.startupFile), newContents);
+
+        var dirname = 'src/components/' + this.filename + '/';
+        this.template(this.templatePath('view.html'), this.destinationPath(dirname + this.filename + '.html'));
+        this.template(this.templatePath('viewmodel' + this.codeFileExtension), this.destinationPath(dirname + this.filename + this.codeFileExtension));
+    },
+
+    end: function() {
+
         
-        if (existingRegistrationRegex.exec(existingContents)) {
-            this.log(chalk.white(this.filename) + chalk.cyan(' is already registered in ') + chalk.white(startupFile));
-            return;
-        }
 
-        var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]',
-            regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm'),
-            modulePath = 'components/' + this.filename + '/' + this.filename,
-            lineToAdd = 'ko.components.register(\'' + this.filename + '\', { require: \'' + modulePath + '\' });',
-            newContents = existingContents.replace(regex, '$1' + lineToAdd + '\n$&');
+        this.log(chalk.white('The component ') + chalk.green(this.filename) + chalk.white(' has been scaffolded & registered.'));
 
-        fs.writeFile(startupFile, newContents);
-        this.log(chalk.green('   registered ') + chalk.white(this.filename) + chalk.green(' in ') + chalk.white(startupFile));
-
-        if (fs.existsSync('gulpfile.js')) {
-            this.log(chalk.magenta('To include in build output, reference ') + chalk.white('\'' + modulePath + '\'') + chalk.magenta(' in ') + chalk.white('gulpfile.js'));
-        }
-    });
-  }
-
-});
-
-function readIfFileExists(path, callback) {
-    if (fs.existsSync(path)) {
-        callback.call(this, this.readFileAsString(path));
+        //TODO: Ça fonctionne tu??
+        // if (this.fs.exists('gulpfile.js')) {
+        //     this.log(chalk.magenta('To include in build output, reference ') + chalk.white('\'' + modulePath + '\'') + chalk.magenta(' in ') + chalk.white('gulpfile.js'));
+        // }
     }
-}
+});
 
 module.exports = ComponentGenerator;

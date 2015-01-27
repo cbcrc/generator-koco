@@ -1,11 +1,11 @@
 define([
-        'framework'
+        'framework',
+        './components'
     ],
-    function(framework) {
+    function(framework, components) {
     	'use strict';
-        //Register components, dialogs & pages
         
-         // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
-
+    	components.registerComponents();
+    	
         framework.init();
     });
