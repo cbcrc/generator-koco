@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= slugName %></title>
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- build:js -->
+    <script src="app/require.config.js"></script>
+    <script data-main="app/startup" src="../bower_components/requirejs/require.js"></script>
+    <!-- endbuild -->
+</head>
+
+<body data-bind="css: { dialog: framework.isDialogOpen }">
+
+    <!-- ko if: framework.currentRoute -->
+
+    <div class="container-fluid" data-bind="component: { name: framework.currentRoute().componentName, params: framework.currentRoute().params }, visible: !framework.isDialogOpen()"></div>
+
+    <!-- /ko -->
+
+    <dialogs data-bind="visible: framework.isDialogOpen" params="{ title: framework.currentDialogTitle }"></dialogs>
+    <modal data-bind="visible: framework.isModalOpen" params="{ title: framework.currentModalTitle }"></modal>
+
+</body>
+
+</html>
