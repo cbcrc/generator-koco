@@ -13,16 +13,16 @@
     <!-- endbuild -->
 </head>
 
-<body data-bind="css: { dialog: framework.isDialogOpen }">
+<body data-bind="css: { dialog: dialoger.isDialogOpen }">
 
-    <!-- ko if: framework.currentRoute -->
+    <!-- ko if: router.currentRoute -->
 
-    <div class="container-fluid" data-bind="component: { name: framework.currentRoute().componentName, params: framework.currentRoute().params }, visible: !framework.isDialogOpen()"></div>
+    <div class="container-fluid" data-bind="component: { name: router.currentRoute().componentName, params: router.currentRoute().params }, visible: !dialog.isDialogOpen()"></div>
 
     <!-- /ko -->
 
-    <dialogs data-bind="visible: framework.isDialogOpen" params="{ title: framework.currentDialogTitle }"></dialogs>
-    <modal data-bind="visible: framework.isModalOpen" params="{ title: framework.currentModalTitle }"></modal>
+    <dialogs data-bind="visible: dialoger.isDialogOpen" params="{ title: dialoger.currentDialogTitle }"></dialogs>
+    <modal data-bind="visible: modaler.isModalOpen" params="{ title: modaler.currentModalTitle }"></modal>
 
 </body>
 
