@@ -11,10 +11,10 @@ var require = {
         'text': '../bower_components/requirejs-text/text',
         'lodash': '../bower_components/lodash/lodash',
         'knockout-validation': '../bower_components/knockout-validation/dist/knockout.validation',
-        'knockout-configurator': '../bower_components/rc.framework.js/dist/knockout-configurator',
-        'framework': '../bower_components/rc.framework.js/dist/framework',
-        'modal-utilities': '../bower_components/rc.framework.js/dist/modal-utilities',
-        'framework-utilities': '../bower_components/rc.framework.js/dist/framework-utilities'
+        'dialoger': '../bower_components/rc.component.dialoger/dist/dialoger',
+        'modaler': '../bower_components/rc.component.modaler/dist/modaler',
+        'router': '../bower_components/rc.component.router/dist/router',
+        'knockout-utilities': '../bower_components/rc.knockout.utilities/dist/knockout.utilities'
     },
     shim: {
         'bootstrap': {

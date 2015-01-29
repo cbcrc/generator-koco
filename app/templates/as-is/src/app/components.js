@@ -1,5 +1,5 @@
-define(['framework'],
-    function(framework) {
+define(['knockout-utilities'],
+    function(knockoutUtilities) {
     	'use strict';
         
         var Components = function(){};

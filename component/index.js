@@ -34,11 +34,8 @@ var ComponentGenerator = generators.NamedBase.extend({
 
         this.startupFileContent = this.fs.read(this.startupFile);
 
-        // rendu a modifier framework pour ressembler à ko.components.register('nav-bar' 
-        // au lieu de framework.registerPage({name: 'test',
-
         var existingRegistrationRegex1 = new RegExp('\\bko\\.components\\.register\\(\s*[\'"]' + this.filename + '[\'"]');
-        var existingRegistrationRegex2 = new RegExp('\\bframework\\.registerComponent\\(\s*[\'"]' + this.filename + '[\'"]');
+        var existingRegistrationRegex2 = new RegExp('\\bknockoutUtilities\\.registerComponent\\(\s*[\'"]' + this.filename + '[\'"]');
 
         if (existingRegistrationRegex1.exec(this.startupFileContent) || existingRegistrationRegex2.exec(this.startupFileContent)) {
             this.log(chalk.magenta('The component ') + chalk.green(this.filename) + chalk.magenta(' is already registered in the ') + chalk.green('startup') + chalk.magenta(' file.'));
@@ -52,7 +49,7 @@ var ComponentGenerator = generators.NamedBase.extend({
 
         var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]';
         var regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm');
-        var lineToAdd = 'framework.registerComponent(\'' + this.filename + '\');';
+        var lineToAdd = 'knockoutUtilities.registerComponent(\'' + this.filename + '\');';
         var newContents = this.startupFileContent.replace(regex, '$1' + lineToAdd + '\n$&');
 
         //we write with fs (not this.fs) directly so there is no conflicter in play for this file

@@ -1,7 +1,7 @@
 define([
         'knockout',
         './components',
-        'knockout-configurator',
+        './knockout-configurator',
         'router',
         'dialoger',
         'modaler'
@@ -18,4 +18,8 @@ define([
             dialoger: dialoger,
             modaler: modaler
         });
+
+        dialoger.init();
+        modaler.init();
+        router.init();
     });

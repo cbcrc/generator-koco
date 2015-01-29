@@ -117,12 +117,13 @@ var KoGenerator = yeoman.generators.Base.extend({
         for (var i = 0; i < files.length; i++) {
             var f = files[i];
             var src = path.join(root, f);
+            var dest;
 
             if (path.basename(f).indexOf('_') == 0) {
-                var dest = path.join(destination, path.dirname(f), path.basename(f).replace(/^_/, ''));
+                dest = path.join(destination, path.dirname(f), path.basename(f).replace(/^_/, ''));
                 this.template(src, dest);
             } else {
-                var dest = path.join(destination, f);
+                dest = path.join(destination, f);
                 this.copy(src, dest);
             }
         }
