@@ -14,7 +14,7 @@ var require = {
         'dialoger': '../bower_components/rc.component.dialoger/dist/dialoger',
         'modaler': '../bower_components/rc.component.modaler/dist/modaler',
         'router': '../bower_components/rc.component.router/dist/router',
-        'knockout-utilities': '../bower_components/rc.knockout.utilities/dist/knockout.utilities'
+        'knockout-utilities': '../bower_components/rc.knockout.utilities/dist/knockout-utilities'
     },
     shim: {
         'bootstrap': {

@@ -21,9 +21,9 @@
     "requirejs-text": "^2.0.13",
     "lodash": "^3.0.0",
     "knockout-mapping": "^2.4.1",
-    "rc.component.dialoger.js": "^0.1.0",
-    "rc.component.modaler.js": "^0.1.0",
-    "rc.component.router.js": "^0.1.0",
+    "rc.component.dialoger": "^0.1.0",
+    "rc.component.modaler": "^0.1.0",
+    "rc.component.router": "^0.1.0",
     "rc.component.knockout-bootstrap-validation": "^0.1.0",
     "rc.knockout.utilities": "^0.1.0",
     "fontawesome": "^4.2.0"
