@@ -1,5 +1,5 @@
 define(['knockout-utilities'],
-    function(knockoutUtilities) {
+    function(koUtilities) {
     	'use strict';
         
         var Components = function(){};

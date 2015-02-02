@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Home page</h1>
+
+    <h2 class="page-header">Dialog example (no data)</h2>
+    <p>This component has been created inside the project. It uses the framework to open a simple dialog.</p>
+    <button class="btn btn-primary" data-bind="click: openDialog">Open dialog!</button>
+
+    <h2 class="page-header">Dialog example (with data, from Bower)</h2>
+    <p>This component is hosted by Bower and uses a dialog component to pick an image.</p>
+    <image-picker params="{ image: image }"></image-picker>
+
+    <h2 class="page-header">Modal example (with data)</h2>
+    <p>This component has been created inside the project. It uses the framework to open a simple modal form that returns data upon clicking <code>Save</code>
+    </p>
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-primary" data-bind="click: openModal">Open modal!</button>
+        </div>
+        <div class="col-md-2">
+            <p data-bind="text: modalResult"></p>
+        </div>
+    </div>
+
+    <h2 class="page-header">Dialog inception</h2>
+    <p>Opening a dialog inside a dialog will stack them.</p>
+    <button class="btn btn-primary" data-bind="click: inception">Begin inception</button>
+
+    <h2 class="page-header">Knockout binding handlers</h2>
+    <p>This demonstrate the use of Knockout binding handlers.</p>
+    <div data-bind="date: now"></div>
+    <div data-bind="since: since"></div>
+</div>
