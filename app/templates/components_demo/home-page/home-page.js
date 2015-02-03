@@ -38,6 +38,11 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler'],
             self.inception = function() {
                 dialoger.showDialog('inception-one');
             };
+
+            // Dialog preventing navigation.
+            self.blocking = function() {
+                dialoger.showDialog('blocking');
+            };
         };
 
         return {

@@ -41,6 +41,10 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'],
                 title: 'Inception two'
             });
 
+            dialoger.registerDialog('blocking', {
+                title: 'Blocking dialog'
+            });
+
             router.registerPage('not-found', {
                 url: 'page-non-trouvee',
                 htmlOnly: true,
