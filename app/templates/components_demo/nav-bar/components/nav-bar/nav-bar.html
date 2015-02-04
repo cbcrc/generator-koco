@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul data-bind="foreach: menus" class="nav navbar-nav">
-                <li data-bind="css: { active: $parent.isPageActive($data) }"><a data-bind="html: title ? title : title, attr: { href: hash }"></a></li>
+                <li data-bind="css: { active: $parent.isPageActive($data) }"><a data-bind="html: title ? title : title, attr: { href: '#/' + url }"></a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->

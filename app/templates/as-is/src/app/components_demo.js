@@ -11,7 +11,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
 
             dialoger.registerDialog('images', {
                 title: 'Select an image',
-                basePath: 'bower_components/rc.component.image-picker/dist/components/'
+                basePath: 'bower_components/rc.component.image-picker/dist/components/images-dialog'
             });
 
             koUtilities.registerComponent('image-picker', {
@@ -27,7 +27,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
                 title: 'Home',
                 pageName: 'home'
             });
-            navBar.menus.push({title: 'Home', hash: ''});
+            navBar.menus.push({title: 'Home', url: ''});
 
             router.registerPage('about', {
                 htmlOnly: true
@@ -35,7 +35,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
             router.addRoute('about', {
                 title: 'About'
             });
-            navBar.menus.push({title: 'About', hash: 'about'});
+            navBar.menus.push({title: 'About', url: 'about'});
 
             dialoger.registerDialog('inception-one', {
                 title: 'Inception one'
@@ -64,7 +64,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
                 title: 'Test',
                 pageName: 'test'
             });
-            navBar.menus.push({title: 'Test', hash: 'test'});
+            navBar.menus.push({title: 'Test', url: 'test'});
 
             koUtilities.registerComponent('test-component', {
                 isBower: true
