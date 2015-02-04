@@ -1,16 +1,16 @@
-define(['router', 'text!./nav-bar.html'],
-    function(router, template) {
+define(['text!./nav-bar.html','nav-bar'],
+    function(template, navBar) {
         'use strict';
 
         function NavBarViewModel() {
             var self = this;
-            self.routes = router.routes;
+            self.menus = navBar.menus;
 
             self.isPageActive = isPageActive;
         }
 
-        function isPageActive(route) {
-            return router.currentRoute() && router.currentRoute().name == route.name;
+        function isPageActive(menu) {
+            return menu.hash.toLowerCase() === window.location.hash.toLowerCase();
         }
 
         return {

@@ -1,5 +1,5 @@
-define(['knockout-utilities', 'router', 'dialoger', 'modaler'],
-    function(koUtilities, router, dialoger, modaler) {
+define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
+    function(koUtilities, router, dialoger, modaler, navBar) {
         'use strict';
 
         var Components = function() {};
@@ -24,9 +24,10 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'],
 
             router.registerPage('home');
             router.addRoute('', {
-                title: 'Demo',
+                title: 'Home',
                 pageName: 'home'
             });
+            navBar.menus.push({title: 'Home', hash: ''});
 
             router.registerPage('about', {
                 htmlOnly: true
@@ -34,6 +35,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'],
             router.addRoute('about', {
                 title: 'About'
             });
+            navBar.menus.push({title: 'About', hash: 'about'});
 
             dialoger.registerDialog('inception-one', {
                 title: 'Inception one'
@@ -62,6 +64,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'],
                 title: 'Test',
                 pageName: 'test'
             });
+            navBar.menus.push({title: 'Test', hash: 'test'});
 
             koUtilities.registerComponent('test-component', {
                 isBower: true

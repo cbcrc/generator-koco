@@ -7,13 +7,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Demo</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-            <ul data-bind="foreach: routes" class="nav navbar-nav">
-                <!-- ko ifnot: excludedFromNav -->
-                <li data-bind="css: { active: $parent.isPageActive($data) }"><a data-bind="html: title ? title : name, attr: { href: hash }"></a></li>
-                <!-- /ko -->
+            <ul data-bind="foreach: menus" class="nav navbar-nav">
+                <li data-bind="css: { active: $parent.isPageActive($data) }"><a data-bind="html: title ? title : title, attr: { href: hash }"></a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
