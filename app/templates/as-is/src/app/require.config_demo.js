@@ -3,7 +3,7 @@ var require = {
     paths: {
         'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
         'jquery': '../bower_components/jquery/dist/jquery',
-        'crossroads': '../bower_components/crossroads.js/dist/crossroads',
+        'byroads': '../bower_components/byroads.js/dist/byroads',
         'hasher': '../bower_components/hasher/dist/js/hasher',
         'knockout': '../bower_components/knockout/dist/knockout',
         'knockout-mapping': '../bower_components/knockout-mapping/knockout.mapping',
@@ -13,7 +13,7 @@ var require = {
         'knockout-validation': '../bower_components/knockout-validation/dist/knockout.validation',
         'dialoger': '../bower_components/rc.component.dialoger/dist/dialoger',
         'modaler': '../bower_components/rc.component.modaler/dist/modaler',
-        'router': '../bower_components/rc.component.router/dist/router',
+        'router': '../bower_components/ko-router/dist/router',
         'knockout-utilities': '../bower_components/rc.knockout.utilities/dist/knockout-utilities',
         'moment': '../bower_components/moment/moment'
     },
