@@ -22,15 +22,17 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'],
                 title: 'Test dialog'
             });
 
-            router.registerPage('home', {
+            router.registerPage('home');
+            router.addRoute('', {
                 title: 'Demo',
-                url: ''
+                pageName: 'home'
             });
 
             router.registerPage('about', {
-                title: 'About',
-                url: 'about',
                 htmlOnly: true
+            });
+            router.addRoute('about', {
+                title: 'About'
             });
 
             dialoger.registerDialog('inception-one', {
@@ -46,15 +48,19 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'],
             });
 
             router.registerPage('not-found', {
-                url: 'page-non-trouvee',
-                htmlOnly: true,
-                excludedFromNav: true
+                htmlOnly: true
+            });
+            router.addRoute('page-non-trouvee', {
+                title: 'Page non trouvée',
+                pageName: 'not-found'
             });
 
             router.registerPage('test', {
-                title: 'Test',
-                url: 'test',
                 isBower: true
+            });
+            router.addRoute('test', {
+                title: 'Test',
+                pageName: 'test'
             });
 
             koUtilities.registerComponent('test-component', {
