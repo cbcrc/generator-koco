@@ -1,11 +1,12 @@
-define(['text!./preload-data-page.html', 'knockout'],
-    function(template, ko) {
+define(['text!./preload-data-page.html'],
+    function(template) {
         'use strict';
 
         var ViewModel = function(params, componentInfo) {
         	var self = this;
 
-        	self.message = params.activationData.message;
+        	// Since we're using an activator for the route, it is possible to get any preloaded data from the activationData param.
+            self.message = params.activationData.message;
         };
 
         return {
