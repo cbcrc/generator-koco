@@ -47,7 +47,7 @@ var KoGenerator = yeoman.generators.Base.extend({
     askFor: function() {
         var done = this.async();
         this.log(this.yeoman);
-        this.log(chalk.magenta('You\'re using the fantastic rc.frameowrk.js app generator.'));
+        this.log(chalk.magenta('You\'re using the fantastic rc.framework.js app generator.'));
 
         var prompts = [{
             name: 'name',
@@ -61,7 +61,7 @@ var KoGenerator = yeoman.generators.Base.extend({
         }, {
             type: 'confirm',
             name: 'useHash',
-            message: 'Do you want to use hash (#!)? Default is pushState.',
+            message: 'Do you want to use hashbang (#!) for routing? Default is pushState.',
             default: false
         }];
 
