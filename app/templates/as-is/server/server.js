@@ -3,7 +3,7 @@
 var configManager = require('./../configuration/configManager');
 var log = require('./../log')(module);
 var express = require('express');
-//var path = require('path');
+var path = require('path');
 var morgan = require('morgan');
 
 function Server() {
@@ -17,9 +17,20 @@ function Server() {
     //TODO: return static 404 html page (with middleware - voir apiServerSetup)
     //TODO: return static 500 html page (with middleware - voir apiServerSetup)
 
-    this.expressApp.get('/index.html', function (req, res) {
-        //Trap by middleware to return static 404 html page
-        res.status(404);
+    // this.expressApp.get('/index.html', function (req, res) {
+    //     //Trap by middleware to return static 404 html page
+    //     res.status(404);
+    // });
+
+    this.expressApp.use(function(req, res, next) {
+        if (path.extname(req.path).length > 0) {
+            // normal static file request
+            next();
+        } else {
+            // should force return `index.html` for angular.js
+            req.url = '/index.html';
+            next();
+        }
     });
 
     //TODO: https://github.com/jonathandelgado/SublimeTodoReview (1)

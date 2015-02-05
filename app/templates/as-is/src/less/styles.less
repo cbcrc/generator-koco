@@ -4,9 +4,11 @@
 @import "./variables.less";
 
 // Global custom styles
-// body {
+<% if(includeDemo) { %>body {
+    padding-top: 65px;
+}<% } else { %>// body {
 //     padding-top: 65px;
-// }
+// }<% } %>
 
 //https://github.com/angular-ui/bootstrap/issues/2925
 .modal-backdrop {

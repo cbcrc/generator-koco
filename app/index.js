@@ -58,12 +58,18 @@ var KoGenerator = yeoman.generators.Base.extend({
             name: 'includeDemo',
             message: 'Do you want to include demo content?',
             default: false
+        }, {
+            type: 'confirm',
+            name: 'useHash',
+            message: 'Do you want to use hash (#!)? Default is pushState.',
+            default: false
         }];
 
         this.prompt(prompts, function(props) {
             this.longName = props.name;
             this.slugName = this._.slugify(this.longName);
             this.includeDemo = props.includeDemo;
+            this.useHash = props.useHash;
             this.demoSuffix = '_demo';
             this.fileDemoSuffix = '';
 
@@ -87,7 +93,7 @@ var KoGenerator = yeoman.generators.Base.extend({
         }
 
         this.template(this.templatePath('must-rename/_package.json'), this.destinationPath('package.json'));
-        this.template(this.templatePath('must-rename/_bower' + this.fileDemoSuffix + '.json'), this.destinationPath('bower.json'));
+        this.template(this.templatePath('must-rename/_bower.json'), this.destinationPath('bower.json'));
         this.copy(this.templatePath('must-rename/_gulpfile.js'), this.destinationPath('gulpfile.js'));
         this.copy(this.templatePath('must-rename/gitignore'), this.destinationPath('.gitignore'));
         this.copy(this.templatePath('must-rename/bowerrc'), this.destinationPath('.bowerrc'));

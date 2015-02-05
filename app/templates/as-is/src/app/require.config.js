@@ -15,7 +15,9 @@ var require = {
         'modaler': '../bower_components/rc.component.modaler/dist/modaler',
         'router': '../bower_components/ko-router/dist/router',
         'knockout-utilities': '../bower_components/rc.knockout.utilities/dist/knockout-utilities',
-        'router-state': '../bower_components/ko-router/dist/router-state-hash'
+        'router-state': '../bower_components/ko-router/dist/router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>'<% if(includeDemo) { %>,
+        'moment': '../bower_components/moment/moment',
+        'nav-bar': '../components/nav-bar/nav-bar'<% } %>
     },
     shim: {
         'bootstrap': {
