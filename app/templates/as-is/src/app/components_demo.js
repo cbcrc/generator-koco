@@ -66,6 +66,16 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
             });
             navBar.menus.push({title: 'Test', url: 'test'});
 
+            router.registerPage('preload-data', {
+                
+            });
+            router.addRoute('preload', {
+                title: 'Preloading data',
+                pageName: 'preload-data',
+                withActivator: true
+            });
+            navBar.menus.push({title: 'Preloading data', url: 'preload'});
+
             koUtilities.registerComponent('test-component', {
                 isBower: true
             });
@@ -77,12 +87,12 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
                 keyboard: false
             });
 
-
-
-
-
-
-
+            modaler.registerModal('loading', {
+                title: 'Loading...',
+                htmlOnly: true,
+                backdrop: 'static',
+                keyboard: false
+            });
 
 
             // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
