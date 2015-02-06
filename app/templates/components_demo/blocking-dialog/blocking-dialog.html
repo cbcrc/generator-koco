@@ -7,7 +7,7 @@
 <div class="container">
     <h1>Blocking dialog</h1>
     <p>This dialog will prevent navigation to occur.</p>
-    <a href="#/test" class="btn btn-danger btn-large">Try to navigate to /test</a>
+    <a href="<% if(useHash) { %>#<% } %>/test" class="btn btn-danger btn-large">Try to navigate to /test</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
