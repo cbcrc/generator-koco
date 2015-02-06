@@ -11,7 +11,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
 
             dialoger.registerDialog('images', {
                 title: 'Select an image',
-                basePath: 'bower_components/rc.component.image-picker/dist/components/images-dialog'
+                basePath: 'bower_components/rc.component.image-picker/src/components/images-dialog'
             });
 
             koUtilities.registerComponent('image-picker', {
