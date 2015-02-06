@@ -29,8 +29,6 @@
     "fontawesome": "^4.2.0"<% if(includeDemo) { %>,
     "moment": "~2.9.0",
     "rc.component.image-picker": "~0.1.1",
-    "rc.component.test-component": "~0.1.0",
-    "rc.page.test-page": "~0.1.0",
-    "rc.dialog.test-dialog": "~0.1.0"<% } %>
+    "rc.page.test-page": "~0.1.0"<% } %>
   }
 }
