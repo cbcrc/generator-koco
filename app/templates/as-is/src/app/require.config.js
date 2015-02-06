@@ -3,8 +3,8 @@ var require = {
     paths: {
         'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
         'jquery': '../bower_components/jquery/dist/jquery',
-        'byroads': '../bower_components/byroads.js/dist/byroads',
-        'hasher': '../bower_components/hasher/dist/js/hasher',
+        'byroads': '../bower_components/byroads.js/dist/byroads'<% if(useHash) { %>,
+        'hasher': '../bower_components/hasher/dist/js/hasher'<% } %>,
         'knockout': '../bower_components/knockout/dist/knockout',
         'knockout-mapping': '../bower_components/knockout-mapping/knockout.mapping',
         'signals': '../bower_components/js-signals/dist/signals',
