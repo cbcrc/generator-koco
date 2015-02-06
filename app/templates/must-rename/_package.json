@@ -27,7 +27,16 @@
     "morgan": "^1.5.0",
     "nconf": "^0.6.9",
     "open": "0.0.5",
-    "winston": "^0.8.3"
+    "winston": "^0.8.3",
+    "deeply": "^0.1.0",
+    "chalk": "^0.4.0",
+    "requirejs": "^2.1.11",
+    "gulp-uglify": "^0.2.1",
+    "gulp-replace": "^0.2.0",
+    "event-stream": "^3.1.0",
+    "gulp-clean": "^0.2.4",
+    "gulp-concat": "^2.2.0",
+    "gulp-requirejs-bundler": "^0.1.1"
   },
   "dependencies": {
     
