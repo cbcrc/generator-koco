@@ -34,53 +34,36 @@ var ComponentGenerator = generators.NamedBase.extend({
 
         this.startupFileContent = this.fs.read(this.startupFile);
 
-        var existingRegistrationRegex1 = new RegExp('\\bko\\.components\\.register\\(\s*[\'"]' + this.filename + '[\'"]');
-        var existingRegistrationRegex2 = new RegExp('\\bkoUtilities\\.registerComponent\\(\s*[\'"]' + this.filename + '[\'"]');
+        var existingRegistrationRegex1 = new RegExp('\\bdialoger\\.registerDialog\\(\s*[\'"]' + this.filename + '[\'"]');
 
-        if (existingRegistrationRegex1.exec(this.startupFileContent) || existingRegistrationRegex2.exec(this.startupFileContent)) {
-            this.log(chalk.magenta('The component ') + chalk.green(this.filename) + chalk.magenta(' is already registered in the ') + chalk.green('components') + chalk.magenta(' file.'));
+        if (existingRegistrationRegex1.exec(this.startupFileContent)) {
+            this.log(chalk.magenta('The dialog ') + chalk.green(this.filename) + chalk.magenta(' is already registered in the ') + chalk.green('components') + chalk.magenta(' file.'));
             this.log(chalk.magenta('Scaffolding aborted.'));
             process.exit(1);
         }
     },
 
-    prompting: function() {
-        var done = this.async();
-        this.prompt({
-            type: 'confirm',
-            name: 'htmlOnly',
-            message: 'Is the component html only?',
-            default: false // Default to current folder name
-        }, function(answers) {
-            this.htmlOnly = answers.htmlOnly;
-            done();
-        }.bind(this));
-    },
-
     writing: function() {
-        this.log(chalk.white('Creating the component ') + chalk.green(this.filename) + chalk.white(' ...'));
+        this.log(chalk.white('Creating the dialog ') + chalk.green(this.filename) + chalk.white(' ...'));
 
         var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]';
         var regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm');
-        var lineToAdd = 'koUtilities.registerComponent(\'' + this.filename + '\'' + (this.htmlOnly ? ', { htmlOnly: true }' : '') + ');';
+        var lineToAdd = 'dialoger.registerDialog(\'' + this.filename + '\');';
         var newContents = this.startupFileContent.replace(regex, '$1' + lineToAdd + '\n$&');
 
         //we write with fs (not this.fs) directly so there is no conflicter in play for this file
         fs.writeFile(this.destinationPath(this.startupFile), newContents);
 
-        var dirname = 'src/components/' + this.filename + '/';
-        this.template(this.templatePath('view.html'), this.destinationPath(dirname + this.filename + '.html'));
-
-        if(!this.htmlOnly){
-            this.template(this.templatePath('viewmodel' + this.codeFileExtension), this.destinationPath(dirname + this.filename + '-ui' + this.codeFileExtension));
-        }
+        var dirname = 'src/components/' + this.filename + '-dialog/';
+        this.template(this.templatePath('view.html'), this.destinationPath(dirname + this.filename + '-dialog.html'));
+        this.template(this.templatePath('viewmodel' + this.codeFileExtension), this.destinationPath(dirname + this.filename + '-dialog-ui' + this.codeFileExtension));
     },
 
     end: function() {
 
 
 
-        this.log(chalk.white('The component ') + chalk.green(this.filename) + chalk.white(' has been scaffolded & registered.'));
+        this.log(chalk.white('The dialog ') + chalk.green(this.filename) + chalk.white(' has been scaffolded & registered.'));
 
         //TODO: Ça fonctionne tu??
         // if (this.fs.exists('gulpfile.js')) {
