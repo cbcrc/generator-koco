@@ -118,9 +118,7 @@ gulp.task('release-js', function () {
             },
             include: [
                 'requireLib',
-                'configs-transforms',
                 'bower_components/ko-router/src/router-ui',
-                <% if(useHash) { %>'bower_components/ko-router-state-hash/src/router-state-hash'<% } else { %>'bower_components/ko-router-state-push/src/router-state-push'<% } %>,
                 'bower_components/rc.component.dialoger/src/dialoger-ui',
                 'bower_components/rc.component.modaler/src/modaler-ui'<% if(includeDemo) { %>,
                 'text!components/about-page/about-page.html',
@@ -136,7 +134,6 @@ gulp.task('release-js', function () {
                 'components/test-modal/test-modal-ui',
                 'bower_components/rc.component.image-picker/src/image-picker-ui',
                 'bower_components/rc.component.image-picker/src/images-dialog-ui',
-                'bower_components/rc.dialog.test-dialog/src/test-dialog-ui',
                 'bower_components/rc.page.test-page/src/test-page-ui',
                 'components/preload-data-page/preload-data-page-ui-activator'<% } %>
             ],

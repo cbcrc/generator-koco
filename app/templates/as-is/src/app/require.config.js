@@ -2,6 +2,7 @@ var require = {
     baseUrl: '..',
     paths: {
         'configs': './app/configs/configs',
+        'configs-transforms': './app/configs/configs.local',
         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap',
         'jquery': 'bower_components/jquery/dist/jquery',
         'byroads': 'bower_components/byroads.js/dist/byroads'<% if(useHash) { %>,
