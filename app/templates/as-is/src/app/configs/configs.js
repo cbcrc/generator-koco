@@ -1,7 +1,14 @@
-define([],
-    function() {
+define(['jquery', 'configs-transforms'],
+    function($, transforms) {
         'use strict';
+        
+        var baseConfigs =  {
+        <% if(includeDemo) { %>
+        	api: {
+        		baseUrl: 'lcl-scoop.radio-canada.ca/api'
+        	}
+        <% } %>
+        };
 
-
-        return {};
+    	return $.extend(baseConfigs, transforms);
     });

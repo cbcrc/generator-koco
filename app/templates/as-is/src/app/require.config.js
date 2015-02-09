@@ -17,7 +17,7 @@ var require = {
         'router': 'bower_components/ko-router/src/router',
         'knockout-utilities': 'bower_components/rc.knockout.utilities/src/knockout-utilities',
         'router-event': 'bower_components/ko-router/src/router-event',
-        'router-state': 'bower_components/ko-router/src/router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>'<% if(includeDemo) { %>,
+        'router-state': 'bower_components/ko-router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>/src/router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>'<% if(includeDemo) { %>,
         'moment': 'bower_components/moment/moment',
         'nav-bar': 'components/nav-bar/nav-bar'<% } %>
     },

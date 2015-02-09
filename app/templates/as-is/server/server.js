@@ -1,10 +1,10 @@
 'use strict';
 
 var configManager = require('./../configuration/configManager');
-var log = require('./../log')(module);
 var express = require('express');
 var path = require('path');
 var morgan = require('morgan');
+var gutil = require('gulp-util');
 
 function Server() {
     this.expressApp = express();
@@ -44,7 +44,7 @@ Server.prototype.start = function(callback) {
         var serverHost = serverAddress.address === '0.0.0.0' ? 'localhost' : serverAddress.address;
         var url = 'http://' + serverHost + ':' + serverAddress.port + '/';
 
-        log.debug('Started dev server at ' + url);
+        gutil.log('Started ' + gutil.colors.green('dev') + ' server at ' + gutil.colors.cyan(url));
 
         callback(null, url);
     });
