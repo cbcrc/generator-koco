@@ -15,7 +15,7 @@ var del = require('del');
 // Gulp and plugins
 var gulp = require('gulp');
 var rjs = require('gulp-requirejs-bundler');
-var concat = require('gulp-concat');
+var concat = require('gulp-concat'); 
 var clean = require('gulp-clean');
 var replace = require('gulp-replace');
 var uglify = require('gulp-uglify');
@@ -85,25 +85,15 @@ gulp.task('dev', ['watch'], function(callback) {
 gulp.task('default', ['dev']);
 
 
-
-
-
-/********************* Release ***********************************/
-
-
-// Discovers all AMD dependencies, concatenates together all required .js files, minifies them
-gulp.task('release-js', function() {
-
-    // Config
-    var requireJsRuntimeConfig = vm.runInNewContext(fs.readFileSync('src/app/require.config.js') + '; require;');
-    var requireJsOptimizerConfig = merge(requireJsRuntimeConfig, {
+// Config
+var requireJsRuntimeConfig = vm.runInNewContext(fs.readFileSync('src/app/require.config.js') + '; require;');
+var requireJsOptimizerConfig = merge(requireJsRuntimeConfig, {
         out: 'scripts.js',
         baseUrl: './src',
         name: 'app/startup',
         paths: {
-            requireLib: 'bower_components/requirejs/require'
-                /*,
-                            configs: 'app/configs/configs.release'*/
+            requireLib: 'bower_components/requirejs/require'/*,
+            configs: 'app/configs/configs.release'*/
         },
         include: [
             'requireLib',
@@ -122,9 +112,11 @@ gulp.task('release-js', function() {
             'bower_components/ko-router/src/router-ui',
             'bower_components/rc.component.dialoger/src/dialoger-ui',
             'bower_components/rc.component.image-picker/src/image-picker-ui',
+            'bower_components/rc.component.image-picker/src/images-dialog-ui',
             'bower_components/rc.component.modaler/src/modaler-ui',
             'bower_components/rc.dialog.test-dialog/src/test-dialog-ui',
-            'bower_components/rc.page.test-page/src/test-page-ui'
+            'bower_components/rc.page.test-page/src/test-page-ui',
+            'components/preload-data-page/preload-data-page-ui-activator'
         ],
         insertRequire: ['app/startup'],
         bundles: {
@@ -135,14 +127,28 @@ gulp.task('release-js', function() {
         }
     });
 
-
-
+// Discovers all AMD dependencies, concatenates together all required .js files, minifies them
+gulp.task('release-js', function () {
     return rjs(requireJsOptimizerConfig)
-        .pipe(uglify({
-            preserveComments: 'some'
-        }))
+        .pipe(uglify({ preserveComments: 'some' }))
         .pipe(gulp.dest('./dist/'));
 });
+
+
+gulp.task('release-images', function () {
+    var images = gulp.src('./src/bower_components/rc.component.image-picker/src/images/**/*');
+    
+    return images.pipe(gulp.dest('./dist/bower_components/rc.component.image-picker/src/images/'));
+});
+
+
+gulp.task('release-fonts', function () {
+    var fonts = gulp.src('./src/bower_components/fontawesome/fonts/**/*');
+    
+    return fonts.pipe(gulp.dest('./dist/bower_components/fontawesome/fonts/'));
+});
+
+
 
 // Concatenates CSS files, rewrites relative paths to Bootstrap fonts, copies Bootstrap fonts
 // gulp.task('css', function () {
@@ -177,7 +183,8 @@ gulp.task('release-html', function() {
 //         .pipe(clean());
 // });
 
-gulp.task('release', ['release-html', 'release-js', 'release-css'], function(callback) {
+gulp.task('release', ['release-html', 'release-js', 'release-css', 'release-images', 'release-fonts'], function(callback) {
     callback();
     console.log('\nPlaced optimized files in ' + chalk.magenta('dist/\n'));
 });
+
