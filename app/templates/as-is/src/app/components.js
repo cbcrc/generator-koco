@@ -1,10 +1,12 @@
-define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
-    function(koUtilities, router, dialoger, modaler, navBar) {
+define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) { %>,'nav-bar'<% } %>],
+    function(koUtilities, router, dialoger, modaler<% if(includeDemo) { %>, navBar<% } %>) {
         'use strict';
 
         var Components = function() {};
 
         Components.prototype.registerComponents = function() {
+            // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
+            
             //Register components, dialogs & pages here
             
             <% if(includeDemo) { %>koUtilities.registerComponent('nav-bar');
@@ -93,10 +95,6 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler','nav-bar'],
                 backdrop: 'static',
                 keyboard: false
             });<% } %>
-
-
-            // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
-
         };
 
         return new Components();

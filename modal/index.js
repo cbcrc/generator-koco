@@ -34,11 +34,10 @@ var ComponentGenerator = generators.NamedBase.extend({
 
         this.startupFileContent = this.fs.read(this.startupFile);
 
-        var existingRegistrationRegex1 = new RegExp('\\bko\\.components\\.register\\(\s*[\'"]' + this.filename + '[\'"]');
-        var existingRegistrationRegex2 = new RegExp('\\bkoUtilities\\.registerComponent\\(\s*[\'"]' + this.filename + '[\'"]');
+        var existingRegistrationRegex1 = new RegExp('\\bmodaler\\.registerModal\\(\s*[\'"]' + this.filename + '[\'"]');
 
-        if (existingRegistrationRegex1.exec(this.startupFileContent) || existingRegistrationRegex2.exec(this.startupFileContent)) {
-            this.log(chalk.magenta('The component ') + chalk.green(this.filename) + chalk.magenta(' is already registered in the ') + chalk.green('components') + chalk.magenta(' file.'));
+        if (existingRegistrationRegex1.exec(this.startupFileContent)) {
+            this.log(chalk.magenta('The modal ') + chalk.green(this.filename) + chalk.magenta(' is already registered in the ') + chalk.green('components') + chalk.magenta(' file.'));
             this.log(chalk.magenta('Scaffolding aborted.'));
             process.exit(1);
         }
@@ -49,7 +48,7 @@ var ComponentGenerator = generators.NamedBase.extend({
         this.prompt({
             type: 'confirm',
             name: 'htmlOnly',
-            message: 'Is the component html only?',
+            message: 'Is the modal html only?',
             default: false // Default to current folder name
         }, function(answers) {
             this.htmlOnly = answers.htmlOnly;
@@ -58,21 +57,21 @@ var ComponentGenerator = generators.NamedBase.extend({
     },
 
     writing: function() {
-        this.log(chalk.white('Creating the component ') + chalk.green(this.filename) + chalk.white(' ...'));
+        this.log(chalk.white('Creating the modal ') + chalk.green(this.filename) + chalk.white(' ...'));
 
         var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]';
         var regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm');
-        var lineToAdd = 'koUtilities.registerComponent(\'' + this.filename + '\'' + (this.htmlOnly ? ', { htmlOnly: true }' : '') + ');';
+        var lineToAdd = 'modaler.registerModal(\'' + this.filename + '\'' + (this.htmlOnly ? ', { htmlOnly: true }' : '') + ');';
         var newContents = this.startupFileContent.replace(regex, '$1' + lineToAdd + '\n$&');
 
         //we write with fs (not this.fs) directly so there is no conflicter in play for this file
         fs.writeFile(this.destinationPath(this.startupFile), newContents);
 
-        var dirname = 'src/components/' + this.filename + '/';
-        this.template(this.templatePath('view.html'), this.destinationPath(dirname + this.filename + '.html'));
+        var dirname = 'src/components/' + this.filename + '-modal/';
+        this.template(this.templatePath('view.html'), this.destinationPath(dirname + this.filename + '-modal.html'));
 
         if(!this.htmlOnly){
-            this.template(this.templatePath('viewmodel' + this.codeFileExtension), this.destinationPath(dirname + this.filename + '-ui' + this.codeFileExtension));
+            this.template(this.templatePath('viewmodel' + this.codeFileExtension), this.destinationPath(dirname + this.filename + '-modal-ui' + this.codeFileExtension));
         }
     },
 
@@ -80,7 +79,7 @@ var ComponentGenerator = generators.NamedBase.extend({
 
 
 
-        this.log(chalk.white('The component ') + chalk.green(this.filename) + chalk.white(' has been scaffolded & registered.'));
+        this.log(chalk.white('The modal ') + chalk.green(this.filename) + chalk.white(' has been scaffolded & registered.'));
 
         //TODO: Ça fonctionne tu??
         // if (this.fs.exists('gulpfile.js')) {
