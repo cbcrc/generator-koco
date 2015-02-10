@@ -1,13 +1,13 @@
-define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler'],
-    function(template, dialoger, ko, modaler) {
+define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
+    function(template, dialoger, ko, modaler, $) {
         'use strict';
 
         var ViewModel = function(settings, componentInfo) {
             var self = this;
-            
+
             // Knockout binding handlers
             self.since = ko.observable(Date.now() - 1000 * 60 * 60 * 24 * 5);
-            
+
             // Update time every 100ms to show how knockout observables work.
             self.now = ko.observable(Date.now());
             setInterval(function() {
@@ -16,7 +16,7 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler'],
 
             // Dialog returning data: Image picker. This value will be set when selecting an image.
             self.image = ko.observable();
-            
+
             // Opening a simple dialog.
             self.openDialog = function() {
                 dialoger.showDialog('test');
@@ -42,6 +42,16 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler'],
             // Dialog preventing navigation.
             self.blocking = function() {
                 dialoger.showDialog('blocking');
+            };
+
+            self.asyncTask = function() {
+                var dfd = new $.Deferred();
+
+                setTimeout(function() {
+                    dfd.resolve();
+                }, 3000);
+
+                return dfd.promise();
             };
         };
 

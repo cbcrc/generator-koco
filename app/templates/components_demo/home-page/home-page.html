@@ -33,4 +33,18 @@
     <p>This demonstrate the use of Knockout binding handlers.</p>
     <div data-bind="date: now"></div>
     <div data-bind="since: since"></div>
+
+    <h2 class="page-header">async-click binding handler</h2>
+    <p>This demonstrate the use of Knockout async-click binding handler.</p>
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-primary" data-bind="asyncClick: asyncTask, asyncClickHtml: '&lt;i class=&quot;fa fa-spinner fa-spin&quot;&gt;&lt;/i&gt; Waiting...'">Do async task!</button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" data-bind="asyncClick: asyncTask, asyncClickHtml: '&lt;i class=&quot;fa fa-spinner fa-spin&quot;&gt;&lt;/i&gt; Waiting...'">Do async task!</button>
+        </div>
+    </div>
+
+
+    <br><br><br><br>
 </div>
