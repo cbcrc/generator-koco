@@ -88,8 +88,8 @@ var KoGenerator = yeoman.generators.Base.extend({
 
         if (this.includeDemo) {
             this._processDirectory('components_demo', this.destinationPath('src/components'));
-            this._processDirectory('validation-rules_demo', this.destinationPath('src/app/ko/validation-rules'));
-            this._processDirectory('binding-handlers_demo', this.destinationPath('src/app/ko/binding-handlers'));
+            this._processDirectory('validation-rules_demo', this.destinationPath('src/components'));
+            this._processDirectory('binding-handlers_demo', this.destinationPath('src/components'));
         }
 
         this.template(this.templatePath('must-rename/_package.json'), this.destinationPath('package.json'));
@@ -116,11 +116,7 @@ var KoGenerator = yeoman.generators.Base.extend({
         //create empty directories 
         if (!this.includeDemo) {
             fs.mkdirSync(this.destinationPath('src/components'));
-            fs.mkdirSync(this.destinationPath('src/app/ko/validation-rules'));
-            fs.mkdirSync(this.destinationPath('src/app/ko/binding-handlers'));
         }
-
-        fs.mkdirSync(this.destinationPath('src/app/ko/extenders'));
 
         this.installDependencies({
             bower: true,
