@@ -41,7 +41,7 @@ function Server() {
 Server.prototype.start = function(callback) {
     var server = this.expressApp.listen(configManager.get('port'), function() {
         var serverAddress = server.address();
-        var serverHost = serverAddress.address === '0.0.0.0' ? 'localhost' : serverAddress.address;
+        var serverHost = serverAddress.address === '0.0.0.0' || serverAddress.address === '::' ? 'localhost' : serverAddress.address;
         var url = 'http://' + serverHost + ':' + serverAddress.port + '/';
 
         gutil.log('Started ' + gutil.colors.green('dev') + ' server at ' + gutil.colors.cyan(url));
