@@ -130,9 +130,9 @@ gulp.task('release-js', function () {
             },
             include: [
                 'requireLib',
-                'bower_components/ko-router/src/router-ui',
-                'bower_components/rc.component.dialoger/src/dialoger-ui',
-                'bower_components/rc.component.modaler/src/modaler-ui'<% if(includeDemo) { %>,
+                'bower_components/knockout-router/src/router-ui',
+                'bower_components/knockout-dialoger/src/dialoger-ui',
+                'bower_components/knockout-modaler/src/modaler-ui'<% if(includeDemo) { %>,
                 'text!components/about-page/about-page.html',
                 'components/blocking-dialog/blocking-dialog-ui',
                 'components/home-page/home-page-ui',
