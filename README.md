@@ -1,4 +1,4 @@
-# generator-rc-framework-js [![Build Status](https://secure.travis-ci.org/W3Max/generator-rc-framework-js.png?branch=master)](https://travis-ci.org/W3Max/generator-rc-framework-js)
+# generator-koco [![Build Status](https://secure.travis-ci.org/W3Max/generator-koco.png?branch=master)](https://travis-ci.org/W3Max/generator-koco)
 
 > [Yeoman](http://yeoman.io) generator
 
@@ -23,16 +23,16 @@ npm install -g yo
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
-To install generator-rc-framework-js from npm, run:
+To install generator-koco from npm, run:
 
 ```bash
-npm install -g generator-rc-framework-js
+npm install -g generator-koco
 ```
 
 Finally, initiate the generator:
 
 ```bash
-yo rc-framework-js
+yo koco
 ```
 
 ### Getting To Know Yeoman

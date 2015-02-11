@@ -1,4 +1,4 @@
-//TO DEBUG: node-debug C:\Users\forgetsm\AppData\Roaming\npm\node_modules\yo\cli.js rc-framework-js
+//TO DEBUG: node-debug C:\Users\forgetsm\AppData\Roaming\npm\node_modules\yo\cli.js koco
 
 'use strict';
 //var util = require('util');

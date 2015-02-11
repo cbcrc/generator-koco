@@ -3,4 +3,4 @@ node_js:
   - '0.10'
 before_install:
   - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-rc-framework-js' ]; then cd .. && eval "mv $currentfolder generator-rc-framework-js" && cd generator-rc-framework-js; fi
+  - if [ "$currentfolder" != 'generator-koco' ]; then cd .. && eval "mv $currentfolder generator-koco" && cd generator-koco; fi

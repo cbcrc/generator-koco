@@ -9,7 +9,7 @@ define([
         'bower_components/knockout-bootstrap-validation/src/binding-handlers/help-block-validation-message',
         'bower_components/knockout-bootstrap-validation/src/extenders/bootstrap-validation',
         'bower_components/knockout-bootstrap-validation/src/extenders/success-validating-message'<% if(includeDemo) { %>,
-        'bower_components/async-click/src/async-click-binding-handler'<% } %>
+        'bower_components/knockout-async-click/src/async-click-binding-handler'<% } %>
     ],
     function(ko, knockoutValidation, koMapping) {
         'use strict';
