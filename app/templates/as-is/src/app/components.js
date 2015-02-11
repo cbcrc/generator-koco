@@ -54,12 +54,12 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) 
                 pageName: 'not-found'
             });
 
-            router.registerPage('test', {
+            router.registerPage('rc.page.test', {
                 isBower: true
             });
             router.addRoute('test', {
                 title: 'Test',
-                pageName: 'test'
+                pageName: 'rc.page.test'
             });
             navBar.menus.push({title: 'Test', url: 'test'});
 
