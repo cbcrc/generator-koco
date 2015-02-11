@@ -24,7 +24,7 @@
     "rc.component.dialoger": "^0.1.0",
     "rc.component.modaler": "^0.1.0",
     "ko-router": "^0.1.0",
-    "rc.component.knockout-bootstrap-validation": "^0.1.0",
+    "knockout-bootstrap-validation": "^0.1.1",
     "rc.knockout.utilities": "^0.1.0",
     "fontawesome": "^4.2.0"<% if(includeDemo) { %>,
     "moment": "~2.9.0",
