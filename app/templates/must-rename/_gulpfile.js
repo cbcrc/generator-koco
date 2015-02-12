@@ -143,9 +143,9 @@ gulp.task('release-js', function () {
                 'components/preload-data-page/preload-data-page-ui',
                 'components/test-dialog/test-dialog-ui',
                 'components/test-modal/test-modal-ui',
-                'bower_components/rc.component.image-picker/src/image-picker-ui',
+                'bower_components/rc.component.image-picker/src/rc.component.image-picker-ui',
                 'bower_components/rc.component.image-picker/src/images-dialog-ui',
-                'bower_components/rc.page.test-page/src/test-page-ui',
+                'bower_components/rc.page.test-page/src/rc.page.test-page-ui',
                 'components/preload-data-page/preload-data-page-ui-activator'<% } %>
             ],
             insertRequire: ['app/startup'],

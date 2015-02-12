@@ -34,7 +34,6 @@
     "gulp-uglify": "^0.2.1",
     "gulp-replace": "^0.2.0",
     "event-stream": "^3.1.0",
-    "gulp-clean": "^0.2.4",
     "gulp-concat": "^2.2.0",
     "gulp-requirejs-bundler": "^0.1.1"
   },
