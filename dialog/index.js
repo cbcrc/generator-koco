@@ -43,6 +43,18 @@ var ComponentGenerator = generators.NamedBase.extend({
         }
     },
 
+    prompting: function() {
+        var done = this.async();
+        this.prompt({
+            name: 'title',
+            message: 'What\'s the title of your new dialog?',
+            default: 'No use for a title'
+        }, function(answers) {
+            this.title = answers.title;
+            done();
+        }.bind(this));
+    },
+
     writing: function() {
         this.log(chalk.white('Creating the dialog ') + chalk.green(this.filename) + chalk.white(' ...'));
 

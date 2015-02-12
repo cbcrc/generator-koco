@@ -27,7 +27,6 @@ var del = require('del');
 var gulp = require('gulp');
 var rjs = require('gulp-requirejs-bundler');
 var concat = require('gulp-concat');
-var clean = require('gulp-clean');
 var replace = require('gulp-replace');
 var uglify = require('gulp-uglify');
 var htmlreplace = require('gulp-html-replace');

@@ -13,10 +13,10 @@ define(['text!./<%= filename %>-modal.html'],
         <%= viewModelClassName %> .prototype.dispose = function() {};
 
 
-        <%= viewModelClassName %> .prototype.close = function() {
+        <%= viewModelClassName %> .prototype.save = function() {
             var self = this;
 
-            self.params.close();
+            self.params.close('Clicked save');
         };
 
         return {

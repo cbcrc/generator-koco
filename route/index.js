@@ -23,8 +23,7 @@ var ComponentGenerator = generators.NamedBase.extend({
         this.startupFile = 'src/app/components' + this.codeFileExtension;
 
         //TODO: Instead of dasherize, throw exception if name invalid?
-        this.filename = this._.dasherize(this.name);
-        this.viewModelClassName = this._.classify(this.name);
+        this.route = this.name;
 
         if (!this.fs.exists(this.startupFile)) {
             this.log(chalk.magenta('The ') + chalk.green('components') + chalk.magenta(' file is missing in the ') + chalk.green('src/app/') + chalk.magenta(' directory.'));
@@ -34,10 +33,10 @@ var ComponentGenerator = generators.NamedBase.extend({
 
         this.startupFileContent = this.fs.read(this.startupFile);
 
-        var existingRegistrationRegex1 = new RegExp('\\brouter\\.registerPage\\(\s*[\'"]' + this.filename + '[\'"]');
+        var existingRegistrationRegex1 = new RegExp('\\brouter\\.addRoute\\(\s*[\'"]' + this.route + '[\'"]');
 
         if (existingRegistrationRegex1.exec(this.startupFileContent)) {
-            this.log(chalk.magenta('The page ') + chalk.green(this.filename) + chalk.magenta(' is already registered in the ') + chalk.green('components') + chalk.magenta(' file.'));
+            this.log(chalk.magenta('The route ') + chalk.green(this.filename) + chalk.magenta(' is already added in the ') + chalk.green('components') + chalk.magenta(' file.'));
             this.log(chalk.magenta('Scaffolding aborted.'));
             process.exit(1);
         }
@@ -46,56 +45,49 @@ var ComponentGenerator = generators.NamedBase.extend({
     prompting: function() {
         var done = this.async();
         this.prompt([{
-            type: 'confirm',
-            name: 'htmlOnly',
-            message: 'Is the page html only?',
-            default: false // Default to current folder name
-        },
-        {
-            type: 'confirm',
-            name: 'withActivator',
-            message: 'Do you need an activator for this page?',
-            default: false // Default to current folder name
-        },{
+            name: 'pageName',
+            message: 'To which page is this route attached?',
+            default: this.route
+        }, {
             name: 'title',
-            message: 'What\'s the title of your new page?',
+            message: 'What\'s the default page title for this route?',
             default: 'No use for a title'
         }], function(answers) {
-            this.htmlOnly = answers.htmlOnly;
-            this.withActivator = answers.withActivator;
+            this.pageName = answers.pageName;
             this.title = answers.title;
             done();
         }.bind(this));
     },
 
+    validating: function() {
+        var filename = this._.dasherize(this.pageName);
+
+        var existingRegistrationRegex1 = new RegExp('\\brouter\\.registerPage\\(\s*[\'"]' + filename + '[\'"]');
+
+        if (!existingRegistrationRegex1.exec(this.startupFileContent)) {
+            this.log(chalk.magenta('The page ') + chalk.green(filename) + chalk.magenta(' is not registered in the ') + chalk.green('components') + chalk.magenta(' file.'));
+            this.log(chalk.magenta('Scaffolding aborted.'));
+            process.exit(1);
+        }
+    },
+
     writing: function() {
-        this.log(chalk.white('Creating the page ') + chalk.green(this.filename) + chalk.white(' ...'));
+        this.log(chalk.white('Adding the route ') + chalk.green(this.name) + chalk.white(' ...'));
 
         var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]';
         var regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm');
-        var lineToAdd = 'router.registerPage(\'' + this.filename + '\'' + (this.htmlOnly ? ', { htmlOnly: true }' : '') + ');';
+        var lineToAdd = 'router.addRoute(\'' + this.name + '\'{ pageName: '+ this.pageName +', title: ' + this.title +' });';
         var newContents = this.startupFileContent.replace(regex, '$1' + lineToAdd + '\n$&');
 
         //we write with fs (not this.fs) directly so there is no conflicter in play for this file
         fs.writeFile(this.destinationPath(this.startupFile), newContents);
-
-        var dirname = 'src/components/' + this.filename + '-page/';
-        this.template(this.templatePath('view.html'), this.destinationPath(dirname + this.filename + '-page.html'));
-
-        if(!this.htmlOnly){
-            this.template(this.templatePath('viewmodel' + this.codeFileExtension), this.destinationPath(dirname + this.filename + '-page-ui' + this.codeFileExtension));
-        }
-
-        if(this.withActivator){
-            this.template(this.templatePath('activator' + this.codeFileExtension), this.destinationPath(dirname + this.filename + '-page-ui-activator' + this.codeFileExtension));
-        }
     },
 
     end: function() {
 
 
 
-        this.log(chalk.white('The page ') + chalk.green(this.filename) + chalk.white(' has been scaffolded & registered.'));
+        this.log(chalk.white('The route ') + chalk.green(this.filename) + chalk.white(' has been added.'));
 
         //TODO: Ça fonctionne tu??
         // if (this.fs.exists('gulpfile.js')) {

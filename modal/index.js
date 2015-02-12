@@ -45,13 +45,18 @@ var ComponentGenerator = generators.NamedBase.extend({
 
     prompting: function() {
         var done = this.async();
-        this.prompt({
+        this.prompt([{
             type: 'confirm',
             name: 'htmlOnly',
             message: 'Is the modal html only?',
             default: false // Default to current folder name
-        }, function(answers) {
+        },{
+            name: 'title',
+            message: 'What\'s the title of your new modal?',
+            default: 'No use for a title'
+        }], function(answers) {
             this.htmlOnly = answers.htmlOnly;
+            this.title = answers.title;
             done();
         }.bind(this));
     },
