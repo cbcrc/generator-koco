@@ -1,3 +1,7 @@
+//
+// Koco's main entry point.
+//
+
 define([
         'knockout',
         './components',

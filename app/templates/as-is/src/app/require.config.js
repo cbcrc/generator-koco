@@ -1,3 +1,7 @@
+//
+// Here you can modify the require.js configuration. This is the require.js configuration object as per http://requirejs.org/docs/api.html#config.
+//
+
 var require = {
     baseUrl: '..',
     paths: {

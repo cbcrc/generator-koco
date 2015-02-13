@@ -1,3 +1,7 @@
+//
+// Main component registry file. It is called once at application start. Any scaffolded component will be added here.
+//
+
 define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) { %>,'nav-bar'<% } %>],
     function(koUtilities, router, dialoger, modaler<% if(includeDemo) { %>, navBar<% } %>) {
         'use strict';
