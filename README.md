@@ -42,6 +42,7 @@ Before using this generator, you need a number of tool
     - If you have problem upgrading your `npm` version, it may have to do with how Windows handle PATH environment variable order.
 3. Install [bower](http://bower.io/): `npm install -g bower`
 4. Install [gulpjs](http://gulpjs.com/): `npm install -g gulp`
+5. Install [yeoman](http://yeoman.io): `npm install -g yo`
 
 ## Installation
 
