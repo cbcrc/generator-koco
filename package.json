@@ -1,6 +1,6 @@
 {
   "name": "generator-koco",
-  "version": "0.1.0",
+  "version": "0.1.12",
   "description": "Boiler plate code for knockout component based application.",
   "license": "MIT",
   "main": "app/index.js",
