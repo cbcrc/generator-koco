@@ -45,13 +45,16 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
             };
 
             self.asyncTask = function() {
-                var dfd = new $.Deferred();
+                return new $.Deferred(function(dfd) {
+                    try {
+                        setTimeout(function() {
+                            dfd.resolve();
+                        }, 3000);
 
-                setTimeout(function() {
-                    dfd.resolve();
-                }, 3000);
-
-                return dfd.promise();
+                    } catch (err) {
+                        dfd.reject(err);
+                    }
+                }).promise();
             };
         };
 
