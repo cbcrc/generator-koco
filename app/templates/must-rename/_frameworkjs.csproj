@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CCBE956B-4AE1-4C49-9F43-0A017D59D639}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace><%= slugName %></RootNamespace>
+    <AssemblyName><%= slugName %></AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="bower.json" />
+    <Content Include="configuration\developmentConfig.json" />
+    <Content Include="configuration\productionConfig.json" />
+    <Content Include="configuration\testConfig.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="src\less\styles.less" />
+    <Content Include="src\less\variables.less" />
+    <None Include="Properties\PublishProfiles\Filesystem.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="configuration\configManager.js" />
+    <Content Include="gulpfile.js" />
+    <Content Include="log.js" />
+    <Content Include="server\server.js" />
+    <Content Include="src\app\components.js" />
+    <Content Include="src\app\configs\configs.development.js" />
+    <Content Include="src\app\configs\configs.js" />
+    <Content Include="src\app\configs\configs.local.js" />
+    <Content Include="src\app\configs\configs.release.js" />
+    <Content Include="src\app\knockout-binding-handlers.js" />
+    <Content Include="src\app\knockout-configurator.js" />
+    <Content Include="src\app\knockout-extenders.js" />
+    <Content Include="src\app\knockout-validation-rules.js" />
+    <Content Include="src\app\require.config.js" />
+    <Content Include="src\app\startup.js" /><% if (includeDemo) { %>
+    <Content Include="src\components\about-page\about-page.html" />
+    <Content Include="src\components\async-rule\async-rule.js" />
+    <Content Include="src\components\blocking-dialog\blocking-dialog-ui.js" />
+    <Content Include="src\components\blocking-dialog\blocking-dialog.html" />
+    <Content Include="src\components\date-binding-handler\date-binding-handler.js" />
+    <Content Include="src\components\home-page\home-page-ui.js" />
+    <Content Include="src\components\home-page\home-page.html" />
+    <Content Include="src\components\inception-one-dialog\inception-one-dialog-ui.js" />
+    <Content Include="src\components\inception-one-dialog\inception-one-dialog.html" />
+    <Content Include="src\components\inception-two-dialog\inception-two-dialog-ui.js" />
+    <Content Include="src\components\inception-two-dialog\inception-two-dialog.html" />
+    <Content Include="src\components\loading-modal\loading-modal.html" />
+    <Content Include="src\components\nav-bar\nav-bar-ui.js" />
+    <Content Include="src\components\nav-bar\nav-bar.html" />
+    <Content Include="src\components\nav-bar\nav-bar.js" />
+    <Content Include="src\components\not-found-page\not-found-page.html" />
+    <Content Include="src\components\preload-data-page\preload-data-page-ui-activator.js" />
+    <Content Include="src\components\preload-data-page\preload-data-page-ui.js" />
+    <Content Include="src\components\preload-data-page\preload-data-page.html" />
+    <Content Include="src\components\since-binding-handler\since-binding-handler.js" />
+    <Content Include="src\components\test-dialog\test-dialog-ui.js" />
+    <Content Include="src\components\test-dialog\test-dialog.html" />
+    <Content Include="src\components\test-modal\test-modal-ui.js" />
+    <Content Include="src\components\test-modal\test-modal.html" /><% } %>
+    <Content Include="src\images\loading.gif" />
+    <Content Include="src\index.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\components\" />
+  </ItemGroup>  
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58055</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58055/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release (gulp cleanup &amp; gulp release)</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ExcludeFoldersFromDeployment>.</ExcludeFoldersFromDeployment>
+  </PropertyGroup>  
+  <Target Name="ReleaseCustomCollectFiles">
+    <ItemGroup>
+      <_ReleaseCustomFiles Include=".\dist\**\*" />
+      <FilesForPackagingFromProject Include="%(_ReleaseCustomFiles.Identity)">
+        <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <PropertyGroup Condition="$(ConfigurationName) == Release">
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      ReleaseCustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+      ReleaseCustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+  </PropertyGroup>
+  <Target Name="DevCustomCollectFiles">
+    <ItemGroup>
+      <_DevCustomFiles Include=".\src\**\*" />
+      <FilesForPackagingFromProject Include="%(_DevCustomFiles.Identity)">
+        <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <PropertyGroup Condition="$(ConfigurationName) != Release">
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      DevCustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+      DevCustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

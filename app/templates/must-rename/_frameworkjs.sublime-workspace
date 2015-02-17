@@ -1,0 +1,579 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Configuration",
+				"ConfigurationName"
+			],
+			[
+				"re",
+				"reject"
+			],
+			[
+				"speci",
+				"specified"
+			],
+			[
+				"bower",
+				"bower_components"
+			],
+			[
+				"requi",
+				"requirePath"
+			],
+			[
+				"reg",
+				"registerModal"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"Router",
+				"RouterEvent〔class〕"
+			],
+			[
+				"sub",
+				"subscribers"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"Route",
+				"RouterEvent"
+			],
+			[
+				"navi",
+				"navigated"
+			],
+			[
+				"com",
+				"componentInfo"
+			],
+			[
+				"promi",
+				"promise"
+			],
+			[
+				"hides",
+				"hideSavingModalWindow"
+			],
+			[
+				"hideS",
+				"hideSavingModalWindow"
+			],
+			[
+				"mo",
+				"modalHelper"
+			],
+			[
+				"de",
+				"deferred"
+			],
+			[
+				"loa",
+				"loadContent"
+			]
+		]
+	},
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"mark prev",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"mark down pre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"mark pre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"brow",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 181.0,
+		"history":
+		[
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"  import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Git/generator-koco/package.json",
+		"/C/Git/generator-koco/app/templates/visual-studio-2013-csproj/Web.Release.config",
+		"/C/Git/generator-koco/app/templates/visual-studio-2013-csproj/Web.Debug.config",
+		"/C/Git/generator-koco/app/templates/visual-studio-2013-csproj/Web.config",
+		"/C/Git/generator-koco/app/templates/must-rename/_frameworkjs.csproj",
+		"/C/Git/generator-koco/app/templates/as-is/src/_index.html",
+		"/C/Git/generator-koco/app/templates/must-rename/_gulpfile.js",
+		"/C/Git/FrameworkJS.Demo/Demo.csproj",
+		"/C/Git/DotCa/RC.DotCa.Websites.RadioCanada/RC.DotCa.Websites.RadioCanada.csproj",
+		"/C/Git/FrameworkJS.Demo/FrameworkJS.Demo.sln",
+		"/C/Git/test/src/components/preload-data-page/preload-data-page-ui-activator.js",
+		"/C/Git/test/src/bower_components/knockout-modaler/src/modaler.js",
+		"/C/Git/test/src/bower_components/knockout-modaler/src/modaler.html",
+		"/C/Git/test/src/bower_components/bootstrap/js/modal.js",
+		"/C/Git/test/node_modules/connect-livereload/.idea/modules.xml",
+		"/C/Git/test/src/bower_components/bootstrap/less/modals.less",
+		"/C/Git/test/node_modules/connect/lib/middleware/methodOverride.js",
+		"/C/Git/test/node_modules/body-parser/node_modules/bytes/Makefile",
+		"/C/Git/test/node_modules/gulp-jshint/node_modules/lodash/internal/charAtCallback.js",
+		"/C/Git/test/node_modules/winston/test/fixtures/keys/agent2-cert.pem",
+		"/C/Git/test/node_modules/del/node_modules/rimraf/AUTHORS",
+		"/C/Git/test/src/bower_components/knockout-router/src/router.js",
+		"/C/Git/test/src/bower_components/knockout-utilities/src/knockout-utilities.js",
+		"/C/Git/test/src/components/home-page/home-page-ui.js",
+		"/C/Git/test/src/bower_components/knockout-bootstrap-validation/src/extenders/bootstrap-validation.js",
+		"/C/Git/test/src/bower_components/knockout-dialoger/src/dialoger.js",
+		"/C/Git/sapin/src/bower_components/knockout-router/src/router.html",
+		"/C/Git/sapin/src/bower_components/knockout-router/src/router.js",
+		"/C/Git/sapin/src/bower_components/knockout-router/bower.json",
+		"/C/Git/demo/gulpfile.js",
+		"/C/Git/demo/src/app/components.js",
+		"/C/Git/demo/src/components/home-page/home-page.html",
+		"/C/Git/demo/src/components/test-dialog/test-dialog.html",
+		"/C/Git/demo/src/components/test-dialog/test-dialog-ui.js",
+		"/C/Git/demo/src/index.html",
+		"/C/Git/generator-koco/README.md",
+		"/C/Git/generator-koco/app/templates/as-is/src/app/knockout-binding-handlers.js",
+		"/C/Git/generator-koco/app/templates/as-is/src/app/knockout-extenders.js",
+		"/C/Git/generator-koco/README.html",
+		"/C/Git/generator-koco/app/templates/as-is/src/app/require.config.js",
+		"/C/Git/generator-koco/app/templates/as-is/src/app/knockout-validation-rules.js",
+		"/C/Git/generator-koco/app/templates/as-is/src/app/knockout-configurator.js",
+		"/C/Git/generator-koco/app/templates/as-is/src/app/configs/configs.js",
+		"/C/Git/generator-koco/.travis.yml",
+		"/C/Git/knockout-bootstrap-validation/README.md",
+		"/C/Git/knockout-modaler/README.md",
+		"/C/Git/knockout-modaler/src/modaler.js",
+		"/C/Git/generator-rc.framework.js/node_modules/mocha/node_modules/debug/component.json",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/configuration/configManager.js",
+		"/C/Git/generator-rc.framework.js/node_modules/mocha/lib/context.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yosay/cli.js",
+		"/C/Git/test/src/app/components.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yo/lib/routes/home.js",
+		"/C/Git/generator-rc.framework.js/node_modules/mocha/lib/hook.js",
+		"/C/Git/rc.component.image-picker/src/rc.component.image-picker-ui.js",
+		"/C/Git/rc.component.image-picker/src/rc.component.images-dialog-ui.js",
+		"/C/Git/generator-rc.framework.js/app/templates/must-rename/_bower.json",
+		"/C/Git/generator-rc.framework.js/app/templates/must-rename/_gulpfile.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/require.config.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/components.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/knockout-configurator.js",
+		"/C/Git/test/configuration/configManager.js",
+		"/C/Git/test/node_modules/nconf/node_modules/optimist/example/line_count_options.js",
+		"/C/Git/test/src/bower_components/ko-router/src/router.js",
+		"/C/Git/test/src/bower_components/ko-router/src/router-event.js",
+		"/C/Git/test/src/bower_components/ko-router/src/router.html",
+		"/C/Git/test/src/bower_components/ko-router-state-push/ko-router-state-push.sublime-project",
+		"/C/Git/test/src/bower_components/ko-router/ko-router.sublime-project",
+		"/C/Git/test/src/bower_components/knockout-validation/localization/ko-KR.js",
+		"/C/Git/test/src/bower_components/moment/locale/ko.js",
+		"/C/Git/test/src/app/knockout-configurator.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yeoman-generator/node_modules/inquirer/node_modules/cli-color/node_modules/memoizee/ext/ref-counter.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yo/node_modules/inquirer/node_modules/cli-color/node_modules/memoizee/ext/ref-counter.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yo/lib/routes/run.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yo/lib/router.js",
+		"/C/Git/generator-rc.framework.js/README.html",
+		"/C/Git/generator-rc.framework.js/node_modules/yeoman-generator/node_modules/inquirer/node_modules/cli-color/node_modules/es5-ext/object/key-of.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/knockout-validation-rules.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yeoman-generator/node_modules/inquirer/node_modules/cli-color/node_modules/memoizee/node_modules/es6-weak-map/node_modules/es6-iterator/for-of.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yo/node_modules/npm-keyword/node_modules/got/node_modules/timed-out/index.js",
+		"/C/Git/generator-rc.framework.js/node_modules/yo/node_modules/npm-keyword/node_modules/got/node_modules/timed-out/readme.md",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/server/server.js",
+		"/C/Git/test/gulpfile.js",
+		"/C/Git/generator-rc.framework.js/app/index.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/knockout-binding-handlers.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/knockout-extenders.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/ko/knockout-extenders.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/ko/knockout-validation-rules.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/ko/knockout-binding-handlers.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/configs/configs.development.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/configs/configs.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/configs/configs.release.js",
+		"/C/Git/testy2/src/app/require.config.js",
+		"/C/Git/generator-rc.framework.js/node_modules/.bin/_mocha",
+		"/C/Git/generator-rc.framework.js/app/templates/must-rename/_package.json",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/configs/configs.local.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/app/startup.js",
+		"/C/Git/generator-rc.framework.js/app/templates/as-is/src/_index.html",
+		"/C/Git/testy/node_modules/deeply/package.json",
+		"/C/Git/testy/gulpfile.js",
+		"/C/Git/testy/src/app/require.config.js",
+		"/C/Git/testy/src/app/startup.js",
+		"/C/Git/testy/src/app/configs/configs.local.js",
+		"/C/Git/testy/src/app/configs/configs.development.js",
+		"/C/Git/testy/src/app/configs/configs.js",
+		"/C/Git/testy/src/app/configs/configs.release.js",
+		"/C/Git/ko-router/bower.json",
+		"/C/Git/ko-router/src/router.js",
+		"/C/Git/ko-router/README.md",
+		"/C/Git/testy/src/components/blocking-dialog/blocking-dialog.html",
+		"/C/Git/testy/bower.json",
+		"/C/Git/testy/build-dev/components/blocking-dialog/blocking-dialog.html",
+		"/C/Git/testy/build-dev/components/blocking-dialog/blocking-dialog-ui.js",
+		"/C/Git/testy/src/components/blocking-dialog/blocking-dialog-ui.js",
+		"/C/Git/testy/build-dev/bower_components/knockout/src/subscribables/observableArray.changeTracking.js",
+		"/C/Git/testy/node_modules/gulp-html-replace/lib/block.js",
+		"/C/Git/testy/build-dev/bower_components/knockout-mapping/build/build-linux",
+		"/C/Git/testy/src/bower_components/ko-router/dist/router.js",
+		"/C/Git/testy/src/bower_components/rc.component.image-picker/dist/images-dialog-ui.js",
+		"/C/Git/testy/src/bower_components/rc.component.image-picker/dist/image-picker-ui.js",
+		"/C/Git/testy/build-dev/bower_components/rc.component.image-picker/dist/image-picker-ui.js",
+		"/C/Git/testy/src/bower_components/rc.component.image-picker/dist/image-picker.html",
+		"/C/Git/testy/build-dev/bower_components/rc.component.image-picker/dist/image-picker.html",
+		"/C/Git/testy/build-dev/index.html",
+		"/C/Git/testy/build-dev/bower_components/rc.component.image-picker/dist/images-dialog-ui.js",
+		"/C/Git/testy/src/bower_components/rc.component.image-picker/dist/images-dialog.html",
+		"/C/Git/testy/build-dev/bower_components/rc.component.image-picker/dist/images-dialog.html",
+		"/C/Git/testy/build-dev/bower_components/bootstrap/less/mixins/image.less"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"",
+			"C:\\Git\\FrameworkJS",
+			"C:\\Git\\FrameworkJS\\website",
+			"C:\\Git\\FrameworkJS",
+			"C:\\Git\\trending-near.me",
+			"C:\\Users\\forgetsm\\Downloads\\trending-near.me-master\\trending-near.me-master"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"log",
+			"Demo",
+			"tmp",
+			"CopyAllFilesToSingleFolderForMsdeployDependsOn",
+			"GeneratedFiles",
+			"CopyAllFilesToSingleFolderForPackageDependsOn",
+			"var dfd",
+			"var deferred",
+			"showModal",
+			"hideCurrentModal",
+			"deferred",
+			"deferreddfd",
+			"deferred",
+			"$.Deferred",
+			"throw",
+			"dialog",
+			"rc.component.test",
+			"rc.dialog",
+			"knockout.utilities",
+			"knockout-utilities",
+			"rc.component.knockout",
+			"image-picker",
+			"rc.component.modaler",
+			"dialoger",
+			"rc.component.dialoger",
+			"ko-router/",
+			"ko-router",
+			"rc.component.dialoger",
+			"rc.component.knockout",
+			"open",
+			"images",
+			"knockout",
+			"knockout.js",
+			"commit",
+			"HEAD",
+			"<<<<<<<",
+			"unknownRouteHandler",
+			"router",
+			"koComponentConfig",
+			"requirePath",
+			"koBindingDone",
+			"navigateInner",
+			"activate",
+			".require",
+			"require",
+			"activator",
+			"withActi",
+			"activate",
+			"process.env.NODE_ENV",
+			"unkn",
+			"replacing",
+			"replacingHash",
+			"hasher",
+			"changed.dispat",
+			"changed.disp",
+			"setHash",
+			"navigated",
+			"navigating",
+			"getModalElement",
+			"hasher",
+			"crossroads",
+			"bootstrap",
+			"ko",
+			"knockoutConfigurator",
+			"frameworkUtilities",
+			"hasher",
+			"_",
+			"crossroads",
+			"generateElement",
+			"registerModal",
+			"ouglo",
+			"registerComponent",
+			"node",
+			"npm",
+			"userInfo = ko.observable({",
+			"dialog-container",
+			"$dialogContainer",
+			"isDialogOpen",
+			"findByName",
+			"dialogRendered",
+			"initSearchFieldsAndPagingInfo",
+			"updateViewModelSearchFields",
+			"hide",
+			"group",
+			"validator",
+			"isinstandby",
+			"validatedFields",
+			"$form",
+			"gandy",
+			"appContext.currentRoute().params",
+			"router",
+			"onCreateFail",
+			"isSaving",
+			"hideLoadingModalWindow",
+			"showLoadingModalWindow",
+			"create",
+			"reload",
+			"afterContentLoaded",
+			"modalHelper",
+			"toJS",
+			"utilities",
+			"multimediaContentHelper",
+			"editingFormUrl",
+			"modalHelper",
+			"tinyMceUtilities",
+			"ConflictDialog",
+			"koMappingUtil",
+			"getFragmentWithQueryString",
+			"router",
+			"utilities",
+			"isPaging(false)",
+			"isPaging",
+			");\n",
+			"componentInfo",
+			"app.",
+			"$postsContainer",
+			");\n",
+			"muContents",
+			"jasny",
+			"winston",
+			"validator",
+			"static-favicon",
+			"requireindex",
+			"nconf",
+			"findByName",
+			"utilities",
+			"tryGetJsonFromResponseTextInDeferred",
+			"});\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"knockout-modaler",
+			"mseguin",
+			"2014-09-03T00:00:00",
+			"\\n",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"modaler.js",
+				"src\\bower_components\\knockout-modaler\\src\\modaler.js"
+			],
+			[
+				"activator",
+				"src\\components\\preload-data-page\\preload-data-page-ui-activator.js"
+			],
+			[
+				"components.js",
+				"app\\templates\\as-is\\src\\app\\components.js"
+			],
+			[
+				"home-",
+				"app\\templates\\components_demo\\home-page\\home-page.html"
+			],
+			[
+				"ko-router",
+				"src\\bower_components\\ko-router\\src\\router.js"
+			],
+			[
+				"_gulp",
+				"app\\templates\\must-rename\\_gulpfile.js"
+			],
+			[
+				"blocking",
+				"src\\components\\blocking-dialog\\blocking-dialog.html"
+			],
+			[
+				"image-pick",
+				"src\\bower_components\\rc.component.image-picker\\dist\\image-picker-ui.js"
+			],
+			[
+				"image-dia",
+				"src\\bower_components\\rc.component.image-picker\\dist\\images-dialog-ui.js"
+			],
+			[
+				"router",
+				"src\\bower_components\\ko-router\\dist\\router.js"
+			],
+			[
+				"knockout-",
+				"src\\bower_components\\rc.knockout.utilities\\dist\\knockout-utilities.js"
+			],
+			[
+				"knockout-utili",
+				"src\\bower_components\\rc.knockout.utilities\\dist\\knockout-utilities.js"
+			],
+			[
+				"knockout-util",
+				"src\\bower_components\\rc.knockout.utilities\\dist\\knockout-utilities.js"
+			],
+			[
+				"knockout-uti",
+				"src\\bower_components\\rc.knockout.utilities\\dist\\knockout-utilities.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 308.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

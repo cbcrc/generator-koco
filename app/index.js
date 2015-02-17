@@ -6,6 +6,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var fs = require('fs');
+var _ = require('lodash');
 //var yosay = require('yosay');
 
 var KoGenerator = yeoman.generators.Base.extend({
@@ -63,6 +64,19 @@ var KoGenerator = yeoman.generators.Base.extend({
             name: 'useHash',
             message: 'Do you want to use hashbang (#!) for routing? Default is pushState.',
             default: false
+        }, {
+            type: 'checkbox',
+            name: 'projects',
+            message: 'Which project file do you want to include? You may select none.',
+            choices: [{
+                name: 'Visual Studio 2013 csproj',
+                value: '2013-csproj',
+                checked: false
+            }, {
+                name: 'Sublime project file',
+                value: 'sublime',
+                checked: false
+            }]
         }];
 
         this.prompt(prompts, function(props) {
@@ -72,6 +86,7 @@ var KoGenerator = yeoman.generators.Base.extend({
             this.useHash = props.useHash;
             this.demoSuffix = '_demo';
             this.fileDemoSuffix = '';
+            this.projects = props.projects;
 
             if (this.includeDemo) {
                 this.fileDemoSuffix = this.demoSuffix;
@@ -92,15 +107,26 @@ var KoGenerator = yeoman.generators.Base.extend({
             this._processDirectory('binding-handlers_demo', this.destinationPath('src/components'));
         }
 
+        if (_.some(this.projects, function(value) {
+                return value === '2013-csproj';
+            })) {
+            this.template(this.templatePath('must-rename/_frameworkjs.csproj'), this.destinationPath(this.slugName + '.csproj'));
+            this._processDirectory('visual-studio-2013-csproj', this.destinationPath(''));
+        }
+
+        if (_.some(this.projects, function(value) {
+                return value === 'sublime';
+            })) {
+            this.copy(this.templatePath('must-rename/_frameworkjs.sublime-project'), this.destinationPath(this.slugName + '.sublime-project'));
+        }
+
         this.template(this.templatePath('must-rename/_package.json'), this.destinationPath('package.json'));
         this.template(this.templatePath('must-rename/_bower.json'), this.destinationPath('bower.json'));
         this.copy(this.templatePath('must-rename/_gulpfile.js'), this.destinationPath('gulpfile.js'));
         this.copy(this.templatePath('must-rename/gitignore'), this.destinationPath('.gitignore'));
         this.copy(this.templatePath('must-rename/bowerrc'), this.destinationPath('.bowerrc'));
         this.copy(this.templatePath('must-rename/jshintrc'), this.destinationPath('.jshintrc'));
-        this.copy(this.templatePath('must-rename/_frameworkjs.sublime-project'), this.destinationPath(this.slugName + '.sublime-project'));
         this.copy(this.templatePath('must-rename/editorconfig'), this.destinationPath('.editorconfig'));
-
 
         //this.directory(this.templatePath('as-is/build-dev'), this.destinationPath('build-dev'));
 
@@ -157,11 +183,11 @@ var KoGenerator = yeoman.generators.Base.extend({
 
             var demoPredicateResult = true;
 
-            if(isParOfDemoFiles){
-                if(self.includeDemo){
-                    demoPredicateResult = isDemoFile; 
-                }else{
-                    demoPredicateResult = !isDemoFile; 
+            if (isParOfDemoFiles) {
+                if (self.includeDemo) {
+                    demoPredicateResult = isDemoFile;
+                } else {
+                    demoPredicateResult = !isDemoFile;
                 }
             }
 
