@@ -24,7 +24,11 @@ var require = {
         'router-event': 'bower_components/knockout-router/src/router-event',
         'router-state': 'bower_components/knockout-router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>/src/router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>'<% if(includeDemo) { %>,
         'moment': 'bower_components/moment/moment',
-        'nav-bar': 'components/nav-bar/nav-bar'<% } %>
+        'nav-bar': 'components/nav-bar/nav-bar',
+        'knockout-i18next': 'bower_components/knockout-i18next/src/knockout-i18next',
+        'i18next': 'bower_components/i18next/i18next.amd',
+        'knockout-mutex': 'bower_components/knockout-mutex/src/knockout-mutex',
+        'knockout-i18next-translator': 'bower_components/knockout-i18next/src/knockout-i18next-translator'<% } %>
     },
     shim: {
         'bootstrap': {

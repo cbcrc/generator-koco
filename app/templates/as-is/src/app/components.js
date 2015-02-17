@@ -15,6 +15,8 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) 
             
             <% if(includeDemo) { %>koUtilities.registerComponent('nav-bar');
 
+            koUtilities.registerComponent('i18next-example');
+
             koUtilities.registerComponent('rc.component.image-picker', {
                 isBower: true
             });

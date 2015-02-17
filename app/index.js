@@ -103,8 +103,7 @@ var KoGenerator = yeoman.generators.Base.extend({
 
         if (this.includeDemo) {
             this._processDirectory('components_demo', this.destinationPath('src/components'));
-            this._processDirectory('validation-rules_demo', this.destinationPath('src/components'));
-            this._processDirectory('binding-handlers_demo', this.destinationPath('src/components'));
+            this._processDirectory('i18next_demo', this.destinationPath('src/app'));
         }
 
         if (_.some(this.projects, function(value) {

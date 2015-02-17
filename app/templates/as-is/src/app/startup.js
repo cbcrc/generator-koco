@@ -8,22 +8,36 @@ define([
         './knockout-configurator',
         'router',
         'dialoger',
-        'modaler'
+        'modaler'<% if(includeDemo) { %>,
+        'knockout-i18next'<% } %>
     ],
-    function(ko, components, knockoutConfigurator, router, dialoger, modaler) {
+    function(ko, components, knockoutConfigurator, router, dialoger, modaler<% if(includeDemo) { %>, knockoutI18next<% } %>) {
         'use strict';
-
-        components.registerComponents();
 
         knockoutConfigurator.configure();
 
-        ko.applyBindings({
-            router: router,
-            dialoger: dialoger,
-            modaler: modaler
-        });
+        <% if(includeDemo) { %>knockoutI18next.init({
+            lng: 'fr',
+            getAsync: true,
+            fallbackLng: 'fr',
+            resGetPath: 'app/locales/__lng__/__ns__.json',
+            ns: {
+                namespaces: ['default'/*, 'another'*/],
+                defaultNs: 'default',
+            }/*,
+                debug: true,
+                sendMissingTo: 'current'*/
+        }).then(function() {<% } %>
+            components.registerComponents();
 
-        dialoger.init();
-        modaler.init();
-        router.init();
+            ko.applyBindings({
+                router: router,
+                dialoger: dialoger,
+                modaler: modaler
+            });
+
+            dialoger.init();
+            modaler.init();
+            router.init();
+        <% if(includeDemo) { %>});<% } %>
     });
