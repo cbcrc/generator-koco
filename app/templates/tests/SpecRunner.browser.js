@@ -6,7 +6,7 @@
 
   // After the 'jasmine-boot' module creates the Jasmine environment, load all test modules then run them
   require(['jasmine-boot'], function () {
-  	var modulesCorrectedPaths = testModules.map(function(m) { return '../test/' + m; });
+  	var modulesCorrectedPaths = testModules.map(function(m) { return '../tests/' + m; });
     require(modulesCorrectedPaths, window.onload);
   });
 })();

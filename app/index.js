@@ -33,13 +33,15 @@ var KoGenerator = yeoman.generators.Base.extend({
                     this.installDependencies();
 
                     /*if (this.includeTests) {
-                      // Install test dependencies too
+                      
+                    }*/
+
+                    // Install test dependencies too
                       var bowerArgs = ['install'];
                       if (isOffline) {
                         bowerArgs.push('--offline');
                       }
-                      this.spawnCommand('bower', bowerArgs, { cwd: 'test' });
-                    }*/
+                      this.spawnCommand('bower', bowerArgs, { cwd: 'tests' });
                 }.bind(this));
             }
         });
@@ -105,6 +107,11 @@ var KoGenerator = yeoman.generators.Base.extend({
             this._processDirectory('components_demo', this.destinationPath('src/components'));
             this._processDirectory('i18next_demo', this.destinationPath('src/app'));
         }
+
+        //tests
+        this._processDirectory('tests', this.destinationPath('tests'));
+        this.template(this.templatePath('must-rename/tests_bower.json'), this.destinationPath('tests/bower.json'));
+        this.template(this.templatePath('must-rename/tests_bowerrc'), this.destinationPath('tests/.bowerrc'));
 
         if (_.some(this.projects, function(value) {
                 return value === '2013-csproj';

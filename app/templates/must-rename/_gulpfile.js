@@ -14,6 +14,7 @@
 'use strict';
 
 var server = require('./server/server');
+var testsServer = require('./server/tests-server');
 var configManager = require('./configuration/configManager');
 
 // Node modules
@@ -221,3 +222,39 @@ gulp.task('release', ['release-html', 'release-js', 'release-css', 'release-imag
     gutil.log('Placed optimized files in ' + gutil.colors.magenta('dist/\n'));
 });
 
+/******** tests *******************/
+
+gulp.task('tests_js', function() {
+    gulp.src(['./tests/**/*.js'])
+        // .pipe(plumber())
+        // .pipe(jshint())
+        // .pipe(jshint.reporter('default'))
+        //     .pipe(plumber.stop())
+        .pipe(livereload());
+});
+
+
+gulp.task('watch_tests', ['less', 'js'], function() {
+    gulp.watch(['./src/**/*.less'], ['less']);
+    gulp.watch(['./src/**/*.js'], ['js']);
+    gulp.watch(['./src/**/*.html'], ['html']);
+    gulp.watch(['./tests/**/*.js'], ['tests_js']);
+});
+
+gulp.task('tests', [ 'watch_tests' ], function(callback) {
+    var log = gutil.log;
+    var colors = gutil.colors;
+
+    testsServer.start(function(err, url) {
+        //TODO: Handle err
+
+        if (gutil.env.open) {
+            log('Opening ' + colors.green('local') + ' server URL in browser');
+            open(url + 'tests/index.html');
+        } else {
+            log(colors.gray('(Run with --open to automatically open URL on startup)'));
+        }
+
+        callback(); // we're done with this task for now
+    });
+});

@@ -5,6 +5,9 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
         var ViewModel = function(settings, componentInfo) {
             var self = this;
 
+            //For tests
+            self.message = ko.observable('Welcome to Koco!');
+
             // Knockout binding handlers
             self.since = ko.observable(Date.now() - 1000 * 60 * 60 * 24 * 5);
 
@@ -27,9 +30,9 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
             self.openModal = function() {
                 modaler.showModal('test').then(function(result) {
                     if (result) {
-                        self.modalResult("Clicked save");
+                        self.modalResult('Clicked save');
                     } else {
-                        self.modalResult("Clicked close");
+                        self.modalResult('Clicked close');
                     }
                 });
             };
@@ -56,6 +59,11 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
                     }
                 }).promise();
             };
+        };
+
+        //For tests
+        ViewModel.prototype.doSomething = function(){
+            this.message('You invoked doSomething() on the viewmodel.');
         };
 
         return {
