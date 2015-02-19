@@ -46,11 +46,10 @@
     <Content Include="README.md" />
     <Content Include="src\less\styles.less" />
     <Content Include="src\less\variables.less" />
-    <None Include="Properties\PublishProfiles\Filesystem.pubxml" />
-    <None Include="Web.Debug.config">
+    <None Include="src\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
+    <None Include="src\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
@@ -85,6 +84,8 @@
     <Content Include="src\components\nav-bar\nav-bar-ui.js" />
     <Content Include="src\components\nav-bar\nav-bar.html" />
     <Content Include="src\components\nav-bar\nav-bar.js" />
+    <Content Include="src\components\i18next-example\i18next-example-ui.js" />
+    <Content Include="src\components\i18next-example\i18next-example.html" />
     <Content Include="src\components\not-found-page\not-found-page.html" />
     <Content Include="src\components\preload-data-page\preload-data-page-ui-activator.js" />
     <Content Include="src\components\preload-data-page\preload-data-page-ui.js" />
@@ -96,7 +97,7 @@
     <Content Include="src\components\test-modal\test-modal.html" /><% } %>
     <Content Include="src\images\loading.gif" />
     <Content Include="src\index.html" />
-    <Content Include="Web.config" />
+    <Content Include="src\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\components\" />

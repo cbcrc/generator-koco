@@ -133,7 +133,7 @@ gulp.task('release-js', function () {
                 'requireLib',
                 'bower_components/knockout-router/src/router-ui',
                 'bower_components/knockout-dialoger/src/dialoger-ui',
-                'bower_components/knockout-modaler/src/modaler-ui'<% if(includeDemo) { %>,
+                'bower_components/knockout-modaler/src/modaler-ui'<% if (includeDemo) { %>,
                 'text!components/about-page/about-page.html',
                 'components/blocking-dialog/blocking-dialog-ui',
                 'components/home-page/home-page-ui',
@@ -175,6 +175,12 @@ gulp.task('release-images', function () {
 <% } %>
 });
 
+<% if(includeDemo) { %>
+gulp.task('release-language-data', function() {
+    return gulp.src('./src/app/locales/**/*')
+        .pipe(gulp.dest('./dist/app/locales/'));
+});
+<% } %>
 
 gulp.task('release-fonts', function () {
     var fonts = gulp.src('./src/bower_components/fontawesome/fonts/**/*');
@@ -182,7 +188,12 @@ gulp.task('release-fonts', function () {
     return fonts.pipe(gulp.dest('./dist/bower_components/fontawesome/fonts/'));
 });
 
-
+<% if (useVisualStudio) { %>
+gulp.task('release-web-config', function() {
+    return gulp.src('./src/Web.config')
+        .pipe(gulp.dest('./dist/'));
+});
+<% } %>
 
 // Concatenates CSS files, rewrites relative paths to Bootstrap fonts, copies Bootstrap fonts
 // gulp.task('css', function () {
@@ -217,7 +228,7 @@ gulp.task('release-html', function() {
 //         .pipe(clean());
 // });
 
-gulp.task('release', ['release-html', 'release-js', 'release-css', 'release-images', 'release-fonts'], function(callback) {
+gulp.task('release', ['release-html', 'release-js', 'release-css', 'release-images', 'release-fonts'<% if (includeDemo) { %>, 'release-language-data'<% } %><% if (useVisualStudio) { %>, 'release-web-config'<% } %>], function(callback) {
     callback();
     gutil.log('Placed optimized files in ' + gutil.colors.magenta('dist/\n'));
 });
