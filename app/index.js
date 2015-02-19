@@ -125,7 +125,7 @@ var KoGenerator = yeoman.generators.Base.extend({
         if (_.some(this.projects, function(value) {
                 return value === '2013-csproj';
             })) {
-            this.template(this.templatePath('must-rename/_frameworkjs.csproj'), this.destinationPath(this.slugName + '.csproj'));
+            this.template(this.templatePath('must-rename/_frameworkjs.csproj'), this.destinationPath(this.longName + '.csproj'));
             this._processDirectory('visual-studio-2013-csproj', this.destinationPath('src/'));
             this.useVisualStudio = true;
         }
@@ -133,7 +133,7 @@ var KoGenerator = yeoman.generators.Base.extend({
         if (_.some(this.projects, function(value) {
                 return value === 'sublime';
             })) {
-            this.template(this.templatePath('must-rename/_frameworkjs.sublime-project'), this.destinationPath(this.slugName + '.sublime-project'));
+            this.template(this.templatePath('must-rename/_frameworkjs.sublime-project'), this.destinationPath(this.longName + '.sublime-project'));
         }
 
         this.template(this.templatePath('must-rename/_package.json'), this.destinationPath('package.json'));
