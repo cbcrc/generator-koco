@@ -21,7 +21,8 @@ define(['jquery', 'configs-transforms'],
         <% if(includeDemo) { %>
         	api: {
         		baseUrl: 'lcl-scoop.radio-canada.ca/api'
-        	}
+        	},
+		baseUrl: '/<%= baseUrl %>'
         <% } %>
         };
 

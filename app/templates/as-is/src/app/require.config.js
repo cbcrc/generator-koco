@@ -3,7 +3,7 @@
 //
 
 var require = {
-    baseUrl: '..',
+    baseUrl: '/<%= baseUrl %>/',
     paths: {
         'configs': './app/configs/configs',
         'configs-transforms': './app/configs/configs.local',

@@ -15,6 +15,11 @@ define([
         'use strict';
 
         knockoutConfigurator.configure();
+	<% if (baseUrl != '..') { %>
+        router.configure({
+            baseUrl: '/<%= baseUrl %>'
+        });
+	<% } %>
 
         <% if(includeDemo) { %>knockoutI18next.init({
             lng: 'fr',

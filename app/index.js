@@ -32,16 +32,19 @@ var KoGenerator = yeoman.generators.Base.extend({
 
                     this.installDependencies();
 
+
                     /*if (this.includeTests) {
                       
                     }*/
 
                     // Install test dependencies too
-                      var bowerArgs = ['install'];
-                      if (isOffline) {
+                    var bowerArgs = ['install'];
+                    if (isOffline) {
                         bowerArgs.push('--offline');
-                      }
-                      this.spawnCommand('bower', bowerArgs, { cwd: 'tests' });
+                    }
+                    this.spawnCommand('bower', bowerArgs, {
+                        cwd: 'tests'
+                    });
                 }.bind(this));
             }
         });
@@ -56,6 +59,10 @@ var KoGenerator = yeoman.generators.Base.extend({
             name: 'name',
             message: 'What\'s the name of your new app?',
             default: path.basename(process.cwd())
+        }, {
+            name: 'baseUrl',
+            message: 'What is the base URL of your application? Leave the default (..) for application hosted on the root of the domain.',
+            default: '..'
         }, {
             type: 'confirm',
             name: 'includeDemo',
@@ -84,11 +91,13 @@ var KoGenerator = yeoman.generators.Base.extend({
         this.prompt(prompts, function(props) {
             this.longName = props.name;
             this.slugName = this._.slugify(this.longName);
+            this.baseUrl = props.baseUrl.replace(/^\/|\/$/g, '');
             this.includeDemo = props.includeDemo;
             this.useHash = props.useHash;
             this.demoSuffix = '_demo';
             this.fileDemoSuffix = '';
             this.projects = props.projects;
+            this.useVisualStudio = false;
 
             if (this.includeDemo) {
                 this.fileDemoSuffix = this.demoSuffix;
@@ -117,22 +126,23 @@ var KoGenerator = yeoman.generators.Base.extend({
                 return value === '2013-csproj';
             })) {
             this.template(this.templatePath('must-rename/_frameworkjs.csproj'), this.destinationPath(this.slugName + '.csproj'));
-            this._processDirectory('visual-studio-2013-csproj', this.destinationPath(''));
+            this._processDirectory('visual-studio-2013-csproj', this.destinationPath('src/'));
+            this.useVisualStudio = true;
         }
 
         if (_.some(this.projects, function(value) {
                 return value === 'sublime';
             })) {
-            this.copy(this.templatePath('must-rename/_frameworkjs.sublime-project'), this.destinationPath(this.slugName + '.sublime-project'));
+            this.template(this.templatePath('must-rename/_frameworkjs.sublime-project'), this.destinationPath(this.slugName + '.sublime-project'));
         }
 
         this.template(this.templatePath('must-rename/_package.json'), this.destinationPath('package.json'));
         this.template(this.templatePath('must-rename/_bower.json'), this.destinationPath('bower.json'));
-        this.copy(this.templatePath('must-rename/_gulpfile.js'), this.destinationPath('gulpfile.js'));
-        this.copy(this.templatePath('must-rename/gitignore'), this.destinationPath('.gitignore'));
-        this.copy(this.templatePath('must-rename/bowerrc'), this.destinationPath('.bowerrc'));
-        this.copy(this.templatePath('must-rename/jshintrc'), this.destinationPath('.jshintrc'));
-        this.copy(this.templatePath('must-rename/editorconfig'), this.destinationPath('.editorconfig'));
+        this.template(this.templatePath('must-rename/_gulpfile.js'), this.destinationPath('gulpfile.js'));
+        this.template(this.templatePath('must-rename/gitignore'), this.destinationPath('.gitignore'));
+        this.template(this.templatePath('must-rename/bowerrc'), this.destinationPath('.bowerrc'));
+        this.template(this.templatePath('must-rename/jshintrc'), this.destinationPath('.jshintrc'));
+        this.template(this.templatePath('must-rename/editorconfig'), this.destinationPath('.editorconfig'));
 
         //this.directory(this.templatePath('as-is/build-dev'), this.destinationPath('build-dev'));
 
