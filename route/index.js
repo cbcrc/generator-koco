@@ -30,7 +30,7 @@ var ComponentGenerator = generators.Base.extend({
 
         this.startupFileContent = this.fs.read(this.startupFile);
 
-        
+
     },
 
     prompting: function() {
@@ -42,7 +42,10 @@ var ComponentGenerator = generators.Base.extend({
         }, {
             name: 'pageName',
             message: 'To which page is this route attached?',
-            required: true
+            required: true,
+            default: function(answers) {
+                return answers.pattern;
+            }
         }, {
             name: 'title',
             message: 'What\'s the default page title for this route?',
@@ -81,7 +84,7 @@ var ComponentGenerator = generators.Base.extend({
 
         var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]';
         var regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm');
-        var lineToAdd = 'router.addRoute(\'' + this.pattern + '\', { pageName: \''+ this.pageName +'\', title: \'' + this.title +'\' });';
+        var lineToAdd = 'router.addRoute(\'' + this.pattern + '\', { pageName: \'' + this.pageName + '\', title: \'' + this.title + '\' });';
         var newContents = this.startupFileContent.replace(regex, '$1' + lineToAdd + '\n$&');
 
         //we write with fs (not this.fs) directly so there is no conflicter in play for this file

@@ -70,12 +70,11 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) 
             navBar.menus.push({title: 'Test', url: 'test'});
 
             router.registerPage('preload-data', {
-                
+                withActivator: true
             });
             router.addRoute('preload', {
                 title: 'Preloading data',
-                pageName: 'preload-data',
-                withActivator: true
+                pageName: 'preload-data'
             });
             navBar.menus.push({title: 'Preloading data', url: 'preload'});
 

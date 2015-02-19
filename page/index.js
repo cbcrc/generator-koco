@@ -73,7 +73,31 @@ var ComponentGenerator = generators.NamedBase.extend({
 
         var token = '// [Scaffolded component registrations will be inserted here. To retain this feature, don\'t remove this comment.]';
         var regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm');
-        var lineToAdd = 'router.registerPage(\'' + this.filename + '\'' + (this.htmlOnly ? ', { htmlOnly: true }' : '') + ');';
+
+
+        var options = '';
+
+        if(this.htmlOnly || this.withActivator){
+            options += ', { ';
+            var count = 0;
+
+            if(this.htmlOnly){
+                options += 'htmlOnly: true';
+                count++;
+            }
+
+            if(this.withActivator){
+                if(count){
+                    options += ', ';
+                }
+
+                options += 'withActivator: true';
+            }
+
+            options += ' }';
+        }
+
+        var lineToAdd = 'router.registerPage(\'' + this.filename + '\'' + options + ');';
         var newContents = this.startupFileContent.replace(regex, '$1' + lineToAdd + '\n$&');
 
         //we write with fs (not this.fs) directly so there is no conflicter in play for this file
