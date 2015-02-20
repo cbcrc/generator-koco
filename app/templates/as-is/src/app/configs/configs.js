@@ -22,7 +22,7 @@ define(['jquery', 'configs-transforms'],
         	api: {
         		baseUrl: 'lcl-scoop.radio-canada.ca/api'
         	},
-		baseUrl: '/<%= baseUrl %>'
+		baseUrl: '/<%= baseUrl %>/'
         <% } %>
         };
 

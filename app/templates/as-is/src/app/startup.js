@@ -39,8 +39,6 @@ define([
 
             dialoger.init();
             modaler.init();
-            router.init(<% if (baseUrl != '..') { %>{
-            baseUrl: '/<%= baseUrl %>'
-        }<% } %>);
+            router.init();
         <% if(includeDemo) { %>});<% } %>
     });

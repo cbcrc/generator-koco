@@ -61,8 +61,8 @@ var KoGenerator = yeoman.generators.Base.extend({
             default: path.basename(process.cwd())
         }, {
             name: 'baseUrl',
-            message: 'What is the base URL of your application? Leave the default (..) for application hosted on the root of the domain.',
-            default: '..'
+            message: 'What is the base URL of your application?',
+            default: '/'
         }, {
             type: 'confirm',
             name: 'includeDemo',
@@ -91,7 +91,7 @@ var KoGenerator = yeoman.generators.Base.extend({
         this.prompt(prompts, function(props) {
             this.longName = props.name;
             this.slugName = this._.slugify(this.longName);
-            this.baseUrl = props.baseUrl.replace(/^\/|\/$/g, '');
+            this.baseUrl = '/' + props.baseUrl.replace(/^\/|\/$/g, '');
             this.includeDemo = props.includeDemo;
             this.useHash = props.useHash;
             this.demoSuffix = '_demo';

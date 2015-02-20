@@ -1,5 +1,5 @@
-define(['text!./blocking-dialog.html', 'router'],
-    function(template, router) {
+define(['text!./blocking-dialog.html', 'router', 'configs'],
+    function(template, router, configs) {
         'use strict';
         var ViewModel = function(params, componentInfo) {
             var self = this;
@@ -10,6 +10,8 @@ define(['text!./blocking-dialog.html', 'router'],
             router.navigating.subscribe(self.canNavigate, self);
 
             self.title = params.title;
+
+            self.testUrl = <% if(useHash) { %>'#' + <% } %>configs.baseUrl + 'test';
 
             self.close = function() {
                 router.navigating.unsubscribe(self.canNavigate);

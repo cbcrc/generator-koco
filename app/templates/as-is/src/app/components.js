@@ -2,8 +2,8 @@
 // Main component registry file. It is called once at application start. Any scaffolded component will be added here.
 //
 
-define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) { %>,'nav-bar'<% } %>],
-    function(koUtilities, router, dialoger, modaler<% if(includeDemo) { %>, navBar<% } %>) {
+define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(includeDemo) { %>,'nav-bar'<% } %>],
+    function(koUtilities, router, dialoger, modaler, configs<% if(includeDemo) { %>, navBar<% } %>) {
         'use strict';
 
         var Components = function() {};
@@ -26,11 +26,11 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) 
             });
 
             router.registerPage('home');
-            router.addRoute('', {
+            router.addRoute(configs.baseUrl + '', {
                 title: 'Home',
                 pageName: 'home'
             });
-            navBar.menus.push({title: 'Home', url: ''});
+            navBar.menus.push({title: 'Home', url: configs.baseUrl + ''});
 
             router.registerPage('about', {
                 htmlOnly: true
@@ -38,7 +38,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) 
             router.addRoute('about', {
                 title: 'About'
             });
-            navBar.menus.push({title: 'About', url: 'about'});
+            navBar.menus.push({title: 'About', url: configs.baseUrl + 'about'});
 
             dialoger.registerDialog('inception-one', {
                 title: 'Inception one'
@@ -67,7 +67,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) 
                 title: 'Test',
                 pageName: 'rc.page.test'
             });
-            navBar.menus.push({title: 'Test', url: 'test'});
+            navBar.menus.push({title: 'Test', url: configs.baseUrl + 'test'});
 
             router.registerPage('preload-data', {
                 withActivator: true
@@ -76,7 +76,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler'<% if(includeDemo) 
                 title: 'Preloading data',
                 pageName: 'preload-data'
             });
-            navBar.menus.push({title: 'Preloading data', url: 'preload'});
+            navBar.menus.push({title: 'Preloading data', url: configs.baseUrl + 'preload'});
 
             koUtilities.registerComponent('test-component', {
                 isBower: true
