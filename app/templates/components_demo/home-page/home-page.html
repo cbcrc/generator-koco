@@ -3,18 +3,18 @@
 
     <h2 class="page-header">Dialog example (no data)</h2>
     <p>This component has been created inside the project. It uses the framework to open a simple dialog.</p>
-    <button class="btn btn-primary" data-bind="click: openDialog">Open dialog!</button>
+    <button class="btn btn-primary" data-bind="click: openDialog, hasFocus: openDialogFocused">Open dialog!</button>
 
     <h2 class="page-header">Dialog example (with data, from Bower)</h2>
     <p>This component is hosted by Bower and uses a dialog component to pick an image.</p>
     <rc.component.image-picker params="{ image: image }"></rc.component.image-picker>
 
     <h2 class="page-header">Modal example (with data)</h2>
-    <p>This component has been created inside the project. It uses the framework to open a simple modal form that returns data upon clicking <code>Save</code>
+    <p>This component has been created inside the project. It uses the framework to open a simple modal form that returns data upon clicking <code>OK</code>
     </p>
     <div class="row">
         <div class="col-md-2">
-            <button class="btn btn-primary" data-bind="click: openModal">Open modal!</button>
+            <button class="btn btn-primary" data-bind="click: openModal, hasFocus: openModalFocused">Open modal!</button>
         </div>
         <div class="col-md-2">
             <p data-bind="text: modalResult"></p>
@@ -23,15 +23,15 @@
 
     <h2 class="page-header">Dialog inception</h2>
     <p>Opening a dialog inside a dialog will stack them.</p>
-    <button class="btn btn-primary" data-bind="click: inception">Begin inception</button>
+    <button class="btn btn-primary" data-bind="click: inception, hasFocus: inceptionFocused">Begin inception</button>
 
     <h2 class="page-header">Dialog that will prevent navigation</h2>
     <p>An example dialog preventing navigation to occur (other than hard refreshing).</p>
-    <button class="btn btn-primary" data-bind="click: blocking">Open</button>
+    <button class="btn btn-primary" data-bind="click: blocking, hasFocus: blockingFocused">Open</button>
 
     <h2 class="page-header">Knockout binding handlers</h2>
     <p>This demonstrate the use of Knockout binding handlers.</p>
-    <div data-bind="date: now"></div>
+    <div aria-live="off" data-bind="date: now"></div>
     <div data-bind="since: since"></div>
 
     <h2 class="page-header">async-click binding handler</h2>

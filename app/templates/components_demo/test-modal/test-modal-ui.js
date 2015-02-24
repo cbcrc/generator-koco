@@ -1,12 +1,18 @@
-define(['text!./test-modal.html'],
-    function(template) {
+define(['text!./test-modal.html', 'knockout'],
+    function(template, ko) {
         'use strict';
 
         var ViewModel = function(settings, componentInfo) {
             var self = this;
 
-            self.save = function() {
-                settings.close('Clicked save');
+            self.okFocused = ko.observable(false);
+
+            settings.shown.subscribe(function() {
+                self.okFocused(true);
+            });
+
+            self.ok = function() {
+                settings.close('Clicked OK');
             };
         };
 

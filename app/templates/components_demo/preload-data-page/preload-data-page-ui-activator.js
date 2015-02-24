@@ -10,7 +10,9 @@ define(['jquery', 'modaler'],
 			var deferred = new $.Deferred();
 
 			// Displays a loading message since the page won't be displayed until the deferred is resolved.
-			modaler.showModal('loading');
+			modaler.showModal('loading', {
+				disableKeyEvents: true
+			});
 			setTimeout(function() {
 
 				// Pass the loaded data to the component.

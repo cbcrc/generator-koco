@@ -21,30 +21,44 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
             self.image = ko.observable();
 
             // Opening a simple dialog.
+            self.openDialogFocused = ko.observable(false);
             self.openDialog = function() {
-                dialoger.showDialog('test');
+                dialoger.showDialog('test').then(function() {
+                    self.openDialogFocused(true);
+                });
             };
 
             // Open a modal will yield an arbitrary result when clicking Save. This is the modal responsibility to return the value.
+            self.openModalFocused = ko.observable(false);
             self.modalResult = ko.observable();
             self.openModal = function() {
-                modaler.showModal('test').then(function(result) {
+                modaler.showModal('test', {
+                    preventFocus: true
+                }).then(function(result) {
                     if (result) {
-                        self.modalResult('Clicked save');
+                        self.modalResult('Clicked OK');
                     } else {
-                        self.modalResult('Clicked close');
+                        self.modalResult('Clicked Cancel');
                     }
+
+                    self.openModalFocused(true);
                 });
             };
 
             // Dialog inception.
+            self.inceptionFocused = ko.observable(false);
             self.inception = function() {
-                dialoger.showDialog('inception-one');
+                dialoger.showDialog('inception-one').then(function() {
+                    self.inceptionFocused(true);
+                });
             };
 
             // Dialog preventing navigation.
+            self.blockingFocused = ko.observable(false);
             self.blocking = function() {
-                dialoger.showDialog('blocking');
+                dialoger.showDialog('blocking').then(function() {
+                    self.blockingFocused(true);
+                });
             };
 
             self.asyncTask = function() {
