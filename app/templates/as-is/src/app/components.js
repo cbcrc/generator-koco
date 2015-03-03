@@ -10,9 +10,9 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(in
 
         Components.prototype.registerComponents = function() {
             // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
-            
+
             //Register components, dialogs & pages here
-            
+
             <% if(includeDemo) { %>koUtilities.registerComponent('nav-bar');
 
             koUtilities.registerComponent('i18next-example');
@@ -35,8 +35,9 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(in
             router.registerPage('about', {
                 htmlOnly: true
             });
-            router.addRoute('about', {
-                title: 'About'
+            router.addRoute(configs.baseUrl + 'about', {
+                title: 'About',
+                pageName: 'about'
             });
             navBar.menus.push({title: 'About', url: configs.baseUrl + 'about'});
 
@@ -55,7 +56,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(in
             router.registerPage('not-found', {
                 htmlOnly: true
             });
-            router.addRoute('page-non-trouvee', {
+            router.addRoute(configs.baseUrl + 'page-non-trouvee', {
                 title: 'Page non trouvée',
                 pageName: 'not-found'
             });
@@ -63,7 +64,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(in
             router.registerPage('rc.page.test', {
                 isBower: true
             });
-            router.addRoute('test', {
+            router.addRoute(configs.baseUrl + 'test', {
                 title: 'Test',
                 pageName: 'rc.page.test'
             });
@@ -72,7 +73,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(in
             router.registerPage('preload-data', {
                 withActivator: true
             });
-            router.addRoute('preload', {
+            router.addRoute(configs.baseUrl + 'preload', {
                 title: 'Preloading data',
                 pageName: 'preload-data'
             });
