@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= slugName %></title>
     <!-- build:css -->
-    <link href="<% if (baseUrl != '..') { %>/<%= baseUrl %><% } %>/css/styles.css" rel="stylesheet">
+    <link href="<%= baseUrl %>css/styles.css" rel="stylesheet">
     <!-- endbuild -->
     <!-- build:js -->
-    <script src="<% if (baseUrl != '..') { %>/<%= baseUrl %><% } %>/app/require.config.js"></script>
-    <script data-main="app/startup" src="<% if (baseUrl != '..') { %>/<% } %><%= baseUrl %>/bower_components/requirejs/require.js"></script>
+    <script src="<%= baseUrl %>app/require.config.js"></script>
+    <script data-main="app/startup" src="<%= baseUrl %>bower_components/requirejs/require.js"></script>
     <!-- endbuild -->
 </head>
 

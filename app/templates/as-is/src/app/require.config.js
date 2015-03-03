@@ -3,7 +3,7 @@
 //
 
 var require = {
-    baseUrl: '/<%= baseUrl %>/',
+    baseUrl: '<%= baseUrl %>',
     paths: {
         'configs': './app/configs/configs',
         'configs-transforms': './app/configs/configs.local',
@@ -28,6 +28,7 @@ var require = {
         'knockout-i18next': 'bower_components/knockout-i18next/src/knockout-i18next',
         'i18next': 'bower_components/i18next/i18next.amd',
         'knockout-mutex': 'bower_components/knockout-mutex/src/knockout-mutex',
+        'async-click-state': 'bower_components/knockout-async-click/src/async-click-state',
         'knockout-i18next-translator': 'bower_components/knockout-i18next/src/knockout-i18next-translator'<% } %>
     },
     shim: {

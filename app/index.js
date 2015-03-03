@@ -34,7 +34,7 @@ var KoGenerator = yeoman.generators.Base.extend({
 
 
                     /*if (this.includeTests) {
-                      
+
                     }*/
 
                     // Install test dependencies too
@@ -61,7 +61,7 @@ var KoGenerator = yeoman.generators.Base.extend({
             default: path.basename(process.cwd())
         }, {
             name: 'baseUrl',
-            message: 'What is the base URL of your application?',
+            message: 'What is the base URL of your application? (Include leading and trailing slashes when needed.',
             default: '/'
         }, {
             type: 'confirm',
@@ -91,7 +91,7 @@ var KoGenerator = yeoman.generators.Base.extend({
         this.prompt(prompts, function(props) {
             this.longName = props.name;
             this.slugName = this._.slugify(this.longName);
-            this.baseUrl = '/' + props.baseUrl.replace(/^\/|\/$/g, '');
+            this.baseUrl = props.baseUrl;
             this.includeDemo = props.includeDemo;
             this.useHash = props.useHash;
             this.demoSuffix = '_demo';
@@ -155,7 +155,7 @@ var KoGenerator = yeoman.generators.Base.extend({
     },
 
     end: function() {
-        //create empty directories 
+        //create empty directories
         if (!this.includeDemo) {
             fs.mkdirSync(this.destinationPath('src/components'));
         }
