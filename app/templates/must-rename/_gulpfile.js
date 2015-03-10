@@ -13,6 +13,7 @@
 
 'use strict';
 
+var sourcemaps = require('gulp-sourcemaps');
 var server = require('./server/server');
 var testsServer = require('./server/tests-server');
 var configManager = require('./configuration/configManager');
@@ -60,9 +61,9 @@ function getEnvironment() {
 
 gulp.task('less', function() {
     gulp.src('./src/less/styles.less')
-        .pipe(less({
-            sourceMap: configManager.get('sourceMap')
-        }).on('error', gutil.log))
+        .pipe(sourcemaps.init())
+        .pipe(less().on('error', gutil.log))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./src/css'))
         .pipe(livereload());
 });
