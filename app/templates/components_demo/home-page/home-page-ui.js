@@ -23,16 +23,16 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
             // Opening a simple dialog.
             self.openDialogFocused = ko.observable(false);
             self.openDialog = function() {
-                dialoger.showDialog('test').then(function() {
+                dialoger.show('test').then(function() {
                     self.openDialogFocused(true);
                 });
             };
 
-            // Open a modal will yield an arbitrary result when clicking Save. This is the modal responsibility to return the value.
+            // Opening a modal will yield an arbitrary result when clicking Save. This is the modal responsibility to return the value.
             self.openModalFocused = ko.observable(false);
             self.modalResult = ko.observable();
             self.openModal = function() {
-                modaler.showModal('test', {
+                modaler.show('test', {
                     preventFocus: true
                 }).then(function(result) {
                     if (result) {
@@ -45,10 +45,20 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
                 });
             };
 
+            // Opening a modal using the modalerOpener example.
+            self.modalerOpenerResult = ko.observable();
+            self.modalClosed = function(result) {
+                if (result) {
+                    self.modalerOpenerResult('Clicked OK');
+                } else {
+                    self.modalerOpenerResult('Clicked Cancel');
+                }
+            };
+
             // Dialog inception.
             self.inceptionFocused = ko.observable(false);
             self.inception = function() {
-                dialoger.showDialog('inception-one').then(function() {
+                dialoger.show('inception-one').then(function() {
                     self.inceptionFocused(true);
                 });
             };
@@ -56,7 +66,7 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
             // Dialog preventing navigation.
             self.blockingFocused = ko.observable(false);
             self.blocking = function() {
-                dialoger.showDialog('blocking').then(function() {
+                dialoger.show('blocking').then(function() {
                     self.blockingFocused(true);
                 });
             };
@@ -76,7 +86,7 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
         };
 
         //For tests
-        ViewModel.prototype.doSomething = function(){
+        ViewModel.prototype.doSomething = function() {
             this.message('You invoked doSomething() on the viewmodel.');
         };
 
