@@ -5,11 +5,11 @@ define(["text!./inception-one-dialog.html", "dialoger"],
         var ViewModel = function(params, componentInfo) {
             var self = this;
             self.openOne = function() {
-                dialoger.showDialog("inception-one");
+                dialoger.show("inception-one");
             };
 
             self.openTwo = function() {
-                dialoger.showDialog("inception-two");
+                dialoger.show("inception-two");
             };
 
             self.close = function() {
