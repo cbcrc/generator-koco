@@ -14,7 +14,7 @@ function Server() {
 
     var router = express.Router();
 
-    router.route('<%= baseUrl %>')
+    router.route('/:page*')
         .all(function(req, res, next) {
             if (path.extname(req.path).length > 0) {
                 // normal static file request
