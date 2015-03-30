@@ -8,10 +8,10 @@ define(['text!./nav-bar.html','nav-bar', 'router'],
         }
 
         NavBarViewModel.prototype.isPageActive = function(menu) {
-            var currentRoute= router.currentRoute();
+            var context = router.context();
 
-            if(currentRoute){
-                return menu.url.toLowerCase() === currentRoute.url.toLowerCase();
+            if (context) {
+                return menu.url.toLowerCase() === context.route.url.toLowerCase();
             }
 
             return false;

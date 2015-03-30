@@ -10,7 +10,7 @@
     "test",
     "tests"
   ],
-  "dependencies": { 
+  "dependencies": {
     "bootstrap": "^3.3.2",
     "jquery": "^2.1.3",
     "byroads.js": "^0.1.0",
@@ -23,9 +23,9 @@
     "knockout-mapping": "^2.4.1",
     "knockout-dialoger": "^0.1.0",
     "knockout-modaler": "^0.1.0",
-    "knockout-router": "^0.1.0",
+    "knockout-router": "^0.2.5",
     "knockout-bootstrap-validation": "^0.1.1",
-    "knockout-utilities": "^0.1.0",
+    "knockout-utilities": "^0.2.0",
     "fontawesome": "^4.2.0"<% if(includeDemo) { %>,
     "moment": "^2.9.0",
     "knockout-async-click": "^0.1.0",

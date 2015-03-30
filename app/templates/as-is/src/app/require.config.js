@@ -19,7 +19,6 @@ var require = {
         'knockout-validation': 'bower_components/knockout-validation/dist/knockout.validation',
         'dialoger': 'bower_components/knockout-dialoger/src/dialoger',
         'modaler': 'bower_components/knockout-modaler/src/modaler',
-        'router': 'bower_components/knockout-router/src/router',
         'knockout-utilities': 'bower_components/knockout-utilities/src/knockout-utilities',
         'router-event': 'bower_components/knockout-router/src/router-event',
         'router-state': 'bower_components/knockout-router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>/src/router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>'<% if(includeDemo) { %>,
@@ -31,6 +30,11 @@ var require = {
         'async-click-state': 'bower_components/knockout-async-click/src/async-click-state',
         'knockout-i18next-translator': 'bower_components/knockout-i18next/src/knockout-i18next-translator'<% } %>
     },
+    packages: [
+    { name: 'router',
+      location: 'bower_components/knockout-router/src',  // default 'packagename'
+      main: 'router'                // default 'main'
+    }],
     shim: {
         'bootstrap': {
             deps: ['jquery']
