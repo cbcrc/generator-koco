@@ -42,16 +42,27 @@
     <Content Include="configuration\developmentConfig.json" />
     <Content Include="configuration\productionConfig.json" />
     <Content Include="configuration\testConfig.json" />
+    <Content Include="gulpfile.dev.js" />
+    <Content Include="gulpfile.release.js" />
+    <Content Include="gulpfile.tests.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="src\less\styles.less" />
-    <Content Include="src\less\variables.less" />
+    <Content Include="src\less\variables.less" /><% if (includeDemo) { %>
+    <Content Include="src\app\locales\en\default.json" />
+    <Content Include="src\app\locales\fr\default.json" /><% } %>
+    <Content Include="tests\components\home-page.js" />
+    <Content Include="tests\index.html" />
+    <Content Include="tests\require.config.js" />
+    <Content Include="tests\SpecRunner.browser.js" />
+    <Content Include="tests\SpecRunner.karma.js" />
     <None Include="src\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="src\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="tests\bower.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="configuration\configManager.js" />
@@ -98,10 +109,10 @@
     <Content Include="src\images\loading.gif" />
     <Content Include="src\index.html" />
     <Content Include="src\Web.config" />
-  </ItemGroup>
+  </ItemGroup><% if (includeDemo) { %>
   <ItemGroup>
     <Folder Include="src\components\" />
-  </ItemGroup>  
+  </ItemGroup><% } %>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

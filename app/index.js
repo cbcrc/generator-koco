@@ -160,10 +160,12 @@ var KoGenerator = yeoman.generators.Base.extend({
             fs.mkdirSync(this.destinationPath('src/components'));
         }
 
-        this.installDependencies({
-            bower: true,
-            npm: true
-        });
+        if (!this.options['skip-install']) {
+            this.installDependencies({
+                bower: true,
+                npm: true
+            });
+        }
     },
 
     _processDirectory: function(source, destination, excludeExtension) {
