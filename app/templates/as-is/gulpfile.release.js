@@ -48,21 +48,15 @@ var less = require('gulp-less');
 var minify = require('gulp-minify-css');
 
 function getEnvironment() {
-    var environment = 'local';
+    var environment = gutil.env.env || 'release';
 
-    if (gutil.env.config) {
-        environment = gutil.env.config;
-    } else {
-        environment = gutil.env._.length > 0 ? gutil.env._[0] : 'local';
-
-        if (environment !== 'local' &&
-            environment !== 'development' &&
-            environment !== 'release') {
-            gutil.log(gutil.colors.yellow('Warning: No valid configuration specified, assuming ') +
-                gutil.colors.green('local') +
-                gutil.colors.yellow(' configuration. Use --env=[environment] to specify environment'));
-            environment = 'local';
-        }
+    if (environment !== 'local' &&
+        environment !== 'development' &&
+        environment !== 'release') {
+        gutil.log(gutil.colors.yellow('Warning: No valid configuration specified, assuming ') +
+            gutil.colors.green('local') +
+            gutil.colors.yellow(' configuration. Use --env=[environment] to specify environment'));
+        environment = 'local';
     }
 
     return environment;
