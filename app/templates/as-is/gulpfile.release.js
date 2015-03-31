@@ -21,6 +21,9 @@ var folders = [
     './src/bower_components/rc.component.image-picker/src/images/**/*',
     './src/app/locales/**/*',
 <% } %>
+<% if (useVisualStudio) { %>
+    './src/web.config',
+<% } %>
     './src/bower_components/fontawesome/fonts/**/*'
 ];
 
@@ -42,6 +45,7 @@ var rjs = require('gulp-requirejs-bundler');
 var uglify = require('gulp-uglify');
 var htmlreplace = require('gulp-html-replace');
 var less = require('gulp-less');
+var minify = require('gulp-minify-css');
 
 function getEnvironment() {
     var environment = 'local';
@@ -68,10 +72,10 @@ function getEnvironment() {
 gulp.task('release-js', ['js-list', 'html-list'], function() {
     // Config
     var jsFiles = _.map(filenames.get('js'), function(f) {
-        return 'components/' + f.replace('\\', '/').replace('.js', '');
+        return 'components/' + f.replace(/\\/g,"/").replace('.js', '');
     });
     var htmlFiles = _.map(filenames.get('html'), function(f) {
-        return 'text!components/' + f.replace('\\', '/');
+        return 'text!components/' + f.replace(/\\/g,"/");
     });
 
     var requireJsRuntimeConfig = vm.runInNewContext(fs.readFileSync('src/app/require.config.js') + '; require;');
@@ -140,6 +144,7 @@ gulp.task('release-folders', function() {
 gulp.task('release-css', function() {
     return gulp.src('./src/less/styles.less')
         .pipe(less().on('error', gutil.log))
+        .pipe(minify())
         .pipe(gulp.dest('./dist/'));
 });
 
@@ -147,13 +152,13 @@ gulp.task('release-css', function() {
 gulp.task('release-html', function() {
     return gulp.src('./src/index.html')
         .pipe(htmlreplace({
-            'css': 'styles.css',
-            'js': 'scripts.js'
+            'css': '<%= baseUrl %>styles.css',
+            'js': '<%= baseUrl %>scripts.js'
         }))
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('release', ['release-html', 'release-js', 'release-css', 'release-folders'<% if (useVisualStudio) { %>, 'release-web-config'<% } %>], function(callback) {
+gulp.task('release', ['release-html', 'release-js', 'release-css', 'release-folders'], function(callback) {
     callback();
     gutil.log('Placed optimized files in ' + gutil.colors.magenta('dist/\n'));
 });

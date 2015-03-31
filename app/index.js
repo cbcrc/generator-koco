@@ -97,7 +97,13 @@ var KoGenerator = yeoman.generators.Base.extend({
             this.demoSuffix = '_demo';
             this.fileDemoSuffix = '';
             this.projects = props.projects;
-            this.useVisualStudio = false;
+            this.useVisualStudio = _.some(this.projects, function(value) {
+                return value === '2013-csproj';
+            });
+
+            this.useSublimeText = _.some(this.projects, function(value) {
+                return value === 'sublime';
+            });
 
             if (this.includeDemo) {
                 this.fileDemoSuffix = this.demoSuffix;
@@ -122,17 +128,12 @@ var KoGenerator = yeoman.generators.Base.extend({
         this.template(this.templatePath('must-rename/tests_bower.json'), this.destinationPath('tests/bower.json'));
         this.template(this.templatePath('must-rename/tests_bowerrc'), this.destinationPath('tests/.bowerrc'));
 
-        if (_.some(this.projects, function(value) {
-                return value === '2013-csproj';
-            })) {
+        if (this.useVisualStudio) {
             this.template(this.templatePath('must-rename/_frameworkjs.csproj'), this.destinationPath(this.longName + '.csproj'));
             this._processDirectory('visual-studio-2013-csproj', this.destinationPath('src/'));
-            this.useVisualStudio = true;
         }
 
-        if (_.some(this.projects, function(value) {
-                return value === 'sublime';
-            })) {
+        if (this.useSublimeText) {
             this.template(this.templatePath('must-rename/_frameworkjs.sublime-project'), this.destinationPath(this.longName + '.sublime-project'));
         }
 
