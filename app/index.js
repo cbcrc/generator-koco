@@ -138,7 +138,6 @@ var KoGenerator = yeoman.generators.Base.extend({
 
         this.template(this.templatePath('must-rename/_package.json'), this.destinationPath('package.json'));
         this.template(this.templatePath('must-rename/_bower.json'), this.destinationPath('bower.json'));
-        this.template(this.templatePath('must-rename/_gulpfile.js'), this.destinationPath('gulpfile.js'));
         this.template(this.templatePath('must-rename/gitignore'), this.destinationPath('.gitignore'));
         this.template(this.templatePath('must-rename/bowerrc'), this.destinationPath('.bowerrc'));
         this.template(this.templatePath('must-rename/jshintrc'), this.destinationPath('.jshintrc'));
