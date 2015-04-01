@@ -87,10 +87,15 @@ Here's the proposed directory structure for a `koco` project.
             |-- <less for your project only...>
         |-- index.html
     |-- gulpfile.js
+    |-- gulpfile.dev.js
+    |-- gulpfile.release.js
+    |-- gulpfile.tests.js
 
 ## Building the project
 
 `koco` uses `gulp` by default to build. You can build the project for local development or to put in release environment.
+
+The project comes with three files. One for developing, one for releasing and the last one for testing.
 
 ### Building locally
 
@@ -106,9 +111,9 @@ To build the project locally, simply run `gulp --open`. Running `gulp` will do a
 To build the project for release or any other environment, simply run `gulp release`. Running `gulp release` will do a number of things:
 
 - `JavaScript`, `less` and `html` will be merged into three separated files and copied into the `/dist` directory.
-- `release-font` and `release-images` task will run and copy specified files.
+- `release-folders` task will run and copy specified files to the `/dist` folder keeping the same pattern.
 
-*Note*: When developing, `require.js` is used to load dependencies dynamically. When in release mode, all `JavaScript` and `html` files are merged to be [handled by the `require.js` optimizer `r.js`](http://requirejs.org/docs/optimization.html).
+*Note*: When developing, `require.js` is used to load dependencies dynamically. When in release mode, all `JavaScript` and `html` files are merged to be [handled by the `require.js` optimizer `r.js`](http://requirejs.org/docs/optimization.html). You can use the `javascript arrays` declared at the top of the `gulpfile.release.js` to specify which file to include or exclude. from the final bundle.
 
 ## Files purpose
 
@@ -162,9 +167,9 @@ Include all custom knockout validation rules here to be loaded at application st
 
 Here you can modify the require.js configuration. This is the require.js configuration object as per http://requirejs.org/docs/api.html#config.
 
-### `gulpfile.js`
+### `gulpfile.js`, `gulpfile.dev.js`, `gulpfile.release.js`, `gulpfile.tests.js`
 
-The `gulp` build file. See [Building the project](#building-the-project) for more information.
+The `gulp` build files. See [Building the project](#building-the-project) for more information.
 
 ## Conventions
 
