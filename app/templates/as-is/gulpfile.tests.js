@@ -11,7 +11,7 @@ var watch = require('gulp-watch');
 var gutil = require('gulp-util');
 
 // local libs
-var testsServer = require('./server/tests-server');
+var testsServer = require('server/tests-server');
 
 gulp.task('tests_js', function() {
     gulp.src(['./tests/**/*.js'])

@@ -139,48 +139,36 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release (gulp cleanup &amp; gulp release)</PostBuildEvent>
+    <PostBuildEvent>SET PATH=%25PATH%25;$(ProjectDir)\node
+$(ProjectDir)\node\git config --global url.https://github.com/.insteadOf git://github.com/
+$(ProjectDir)\node\node.exe $(ProjectDir)\node\node_modules\npm\bin\npm-cli install
+$(ProjectDir)\node\node.exe $(ProjectDir)\node\node_modules\bower\bin\bower install --config.cwd=$(ProjectDir)
+$(ProjectDir)\node\node.exe $(ProjectDir)\node\node_modules\bower\bin\bower update --config.cwd=$(ProjectDir)
+$(ProjectDir)\node\node.exe $(ProjectDir)\node\node_modules\gulp\bin\gulp deploy --env=$(ConfigurationName)
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <ExcludeFoldersFromDeployment>.</ExcludeFoldersFromDeployment>
-  </PropertyGroup>  
-  <Target Name="ReleaseCustomCollectFiles">
+  </PropertyGroup>
+  <Target Name="DeployCustomCollectFiles">
     <ItemGroup>
       <_ReleaseCustomFiles Include=".\dist\**\*" />
-      <FilesForPackagingFromProject Include="%(_ReleaseCustomFiles.Identity)">
+      <FilesForPackagingFromProject Include="%(_DeployCustomFiles.Identity)">
         <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
       </FilesForPackagingFromProject>
     </ItemGroup>
   </Target>
-  <PropertyGroup Condition="$(ConfigurationName) == Release">
+  <PropertyGroup>
     <CopyAllFilesToSingleFolderForPackageDependsOn>
-      ReleaseCustomCollectFiles;
+      DeployCustomCollectFiles;
       $(CopyAllFilesToSingleFolderForPackageDependsOn);
     </CopyAllFilesToSingleFolderForPackageDependsOn>
     <CopyAllFilesToSingleFolderForMsdeployDependsOn>
-      ReleaseCustomCollectFiles;
+      DeployCustomCollectFiles;
       $(CopyAllFilesToSingleFolderForPackageDependsOn);
     </CopyAllFilesToSingleFolderForMsdeployDependsOn>
   </PropertyGroup>
-  <Target Name="DevCustomCollectFiles">
-    <ItemGroup>
-      <_DevCustomFiles Include=".\src\**\*" />
-      <FilesForPackagingFromProject Include="%(_DevCustomFiles.Identity)">
-        <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
-      </FilesForPackagingFromProject>
-    </ItemGroup>
-  </Target>
-  <PropertyGroup Condition="$(ConfigurationName) != Release">
-    <CopyAllFilesToSingleFolderForPackageDependsOn>
-      DevCustomCollectFiles;
-      $(CopyAllFilesToSingleFolderForPackageDependsOn);
-    </CopyAllFilesToSingleFolderForPackageDependsOn>
-    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
-      DevCustomCollectFiles;
-      $(CopyAllFilesToSingleFolderForPackageDependsOn);
-    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

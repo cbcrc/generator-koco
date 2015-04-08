@@ -13,7 +13,7 @@ var watch = require('gulp-watch');
 var gutil = require('gulp-util');
 
 // local libs
-var server = require('./server/server');
+var server = require('server/server');
 
 gulp.task('less', function() {
     gulp.src('./src/less/styles.less')
@@ -25,7 +25,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src(['./src/**/*.js'])
+    return gulp.src(['./src/**/*.js'])
         .pipe(livereload());
 });
 
@@ -39,7 +39,6 @@ gulp.task('watch', ['less', 'js'], function() {
     gulp.watch(['./src/**/*.js'], ['js']);
     gulp.watch(['./src/**/*.html'], ['html']);
 });
-
 
 gulp.task('local', ['watch'], function(callback) {
     var log = gutil.log;
@@ -60,5 +59,3 @@ gulp.task('local', ['watch'], function(callback) {
 });
 
 gulp.task('default', ['local']);
-
-
