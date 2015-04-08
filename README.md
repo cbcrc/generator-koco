@@ -4,13 +4,21 @@ A knockout component based project structure and conventions. It should be used 
 
 ## Table of contents
 
+- [Manifesto](#manifesto)
 - [Compatibilty and recommended modules](#compatibilty-and-recommended-modules)
 - [Pre-requisites](#pre-requisites)
 - [Installation](#installation)
 - [Project structure](#project-structure)
 - [Building the project](#building-the-project)
+- [Deploying your project](#deploying-your-project)
 - [Files purpose](#files-purpose)
 - [Conventions](#conventions)
+
+## Manifesto
+
+The generator aims to help easing the development and deployment of JavaScript web applications. Code should be small, concise and encapsulated in a component so it can be reused and passed to another project easily.
+
+A component is not necessarily a knockout component, but can be anything that can be sliced and reused properly inside or outside the project.
 
 ## Compatibilty and recommended modules
 
@@ -97,23 +105,68 @@ Here's the proposed directory structure for a `koco` project.
 
 The project comes with three files. One for developing, one for releasing and the last one for testing.
 
-### Building locally
-
 To build the project locally, simply run `gulp --open`. Running `gulp` will do a number of things:
+
+### What it does
 
 - `*.less` files will be compiled into css in the `/src/app/css` directory 
 - `gulp watch` will be applied on `*.js`, `*.less` and `*.html` files in various locations of your project and build them as you modify them so you can use [Chrome's livereload feature](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en).
 - a `nodejs express` server locally on port `1337`
 - when `--open` is specified, it will open your default browser tab on `http://localhost:1337`.
 
-### Releasing
+## Deploying your project
 
-To build the project for release or any other environment, simply run `gulp release`. Running `gulp release` will do a number of things:
+To build the project for release or any other environment, simply run `gulp deploy`. Running `gulp deploy` will do a number of things:
 
 - `JavaScript`, `less` and `html` will be merged into three separated files and copied into the `/dist` directory.
 - `release-folders` task will run and copy specified files to the `/dist` folder keeping the same pattern.
 
-*Note*: When developing, `require.js` is used to load dependencies dynamically. When in release mode, all `JavaScript` and `html` files are merged to be [handled by the `require.js` optimizer `r.js`](http://requirejs.org/docs/optimization.html). You can use the `javascript arrays` declared at the top of the `gulpfile.release.js` to specify which file to include or exclude. from the final bundle.
+*Note*: When developing, `require.js` is used to load dependencies dynamically. When in release mode, all `JavaScript` and `html` files are merged to be [handled by the `require.js` optimizer `r.js`](http://requirejs.org/docs/optimization.html). You can use the `javascript arrays` declared at the top of the `gulpfile.js` to specify which file to include or exclude from the final bundle.
+
+### Specifying a configuration
+
+A project uses two configuration files to build. The first one, the parent, is named [`configs.js`](#configsjs). Then, a child file is used to superseed the parent file values. These files are named after their environment.
+
+To specify an environment, run the following `gulp` command:
+
+```bash
+gulp deploy --env=[environment]
+```
+
+### Example
+
+*configs.js*
+```javascript
+return {
+        api: {
+            baseUrl: 'http://example.com/api'
+        },
+        imagePicker: {
+            defaultWidth: '635px',
+            defaultHeight: '357px'
+        }
+    };
+```
+
+*configs.dev.js*
+```javascript
+return {
+        api: {
+            baseUrl: 'http://dev.example.com/api'
+        }
+    };
+```
+
+*gulp command*
+```bash
+gulp deploy --env=dev
+```
+
+In this case, `api.baseUrl` would be overrided in the child file.
+
+### Creating an environment
+
+Simply name your file `configs.[environment].js` in the `/src/app/configs` folder. If the environment doesn't exist, `local` will be assumed.
 
 ## Files purpose
 
@@ -167,7 +220,7 @@ Include all custom knockout validation rules here to be loaded at application st
 
 Here you can modify the require.js configuration. This is the require.js configuration object as per http://requirejs.org/docs/api.html#config.
 
-### `gulpfile.js`, `gulpfile.dev.js`, `gulpfile.release.js`, `gulpfile.tests.js`
+### `gulpfile.js`, `gulpfile.local.js`, `gulpfile.deploy.js`, `gulpfile.tests.js`
 
 The `gulp` build files. See [Building the project](#building-the-project) for more information.
 
