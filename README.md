@@ -1,6 +1,6 @@
 # Knockout Component - Koco - Generator 
 
-A knockout component based project structure and conventions. It should be used when wanting to quickly scaffold a project structure and start right away with basic modules to create a single page application. 
+A knockout components based project structure and conventions. It should be used when wanting to quickly scaffold a project structure and start right away with basic modules to create a single page application. 
 
 ## Table of contents
 
