@@ -4,11 +4,11 @@
   "description": "Boiler plate code for knockout component based application.",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "W3Max/generator-koco",
+  "repository": "cbcrc/generator-koco",
   "author": {
     "name": "Maxime Séguin",
-    "email": "info@maximeseguin.com",
-    "url": "https://github.com/W3Max"
+    "email": "maxime.forget-seguin@radio-canada.ca",
+    "url": "https://github.com/cbcrc"
   },
   "engines": {
     "node": ">=0.10.0"
