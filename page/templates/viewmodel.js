@@ -4,7 +4,7 @@ define(['text!./<%= filename %>-page.html'],
 
         var <%= viewModelClassName %> = function(params, componentInfo) {
             var self = this;
-            
+
             self.params = params;<% if(withActivator) { %>
             self.message = params.activationData.message;
             <% } %>

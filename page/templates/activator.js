@@ -4,7 +4,7 @@ define(['jquery'],
 
         var Activator = function() {};
 
-        // The activate method is required to return a promise for the router. 
+        // The activate method is required to return a promise for the router.
         Activator.prototype.activate = function() {
             var deferred = new $.Deferred();
 
