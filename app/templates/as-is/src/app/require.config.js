@@ -21,7 +21,7 @@ var require = {
         'modaler': 'bower_components/knockout-modaler/src/modaler',
         'knockout-utilities': 'bower_components/knockout-utilities/src/knockout-utilities',
         'router-event': 'bower_components/knockout-router/src/router-event',
-        'router-state': 'bower_components/knockout-router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>/src/router-state-<% if(useHash) { %>hash<% } else { %>push<% } %>'<% if(includeDemo) { %>,
+        'router-state': <% if(useHash) { %>'bower_components/knockout-router-state-hash/src/router-state-hash'<% } else { %>'bower_components/koco-router/src/router-state-push'<% } %><% if(includeDemo) { %>,
         'moment': 'bower_components/moment/moment',
         'nav-bar': 'components/nav-bar/nav-bar',
         'knockout-i18next': 'bower_components/knockout-i18next/src/knockout-i18next',
