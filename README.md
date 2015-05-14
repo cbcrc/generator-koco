@@ -1,4 +1,4 @@
-# Knockout Component - Koco - Generator 
+# koco (generator)
 
 A knockout component based project structure and conventions. It should be used when wanting to quickly scaffold a project structure and start right away with basic modules to create a single page application. 
 
