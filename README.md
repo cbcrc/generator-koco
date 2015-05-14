@@ -63,6 +63,8 @@ npm install -g generator-koco
 Finally, initiate the generator:
 
 ```bash
+mkdir test
+cd test
 yo koco
 ```
 
