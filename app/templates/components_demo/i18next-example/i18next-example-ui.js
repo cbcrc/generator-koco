@@ -1,4 +1,4 @@
-define(['text!./i18next-example.html', 'knockout', 'jquery', 'knockout-i18next-translator'],
+define(['text!./i18next-example.html', 'knockout', 'jquery', 'koco-i18next-translator'],
     function(template, ko, $, Translator) {
         'use strict';
 

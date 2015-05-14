@@ -9,7 +9,7 @@ define([
         'router',
         'dialoger',
         'modaler'<% if(includeDemo) { %>,
-        'knockout-i18next'<% } %>
+        'koco-i18next'<% } %>
     ],
     function(ko, components, knockoutConfigurator, router, dialoger, modaler<% if(includeDemo) { %>, knockoutI18next<% } %>) {
         'use strict';

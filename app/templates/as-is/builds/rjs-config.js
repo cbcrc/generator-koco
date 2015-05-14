@@ -29,9 +29,9 @@ function rjsConfig(environment, includes, jsFiles, htmlFiles) {
         },
         include: [
             'requireLib',
-            'bower_components/knockout-router/src/router-ui',
-            'bower_components/knockout-dialoger/src/dialoger-ui',
-            'bower_components/knockout-modaler/src/modaler-ui',
+            'bower_components/koco-router/src/router-ui',
+            'bower_components/koco-dialoger/src/dialoger-ui',
+            'bower_components/koco-modaler/src/modaler-ui',
         ].concat(includes, jsFiles, htmlFiles),
         insertRequire: ['app/startup'],
         bundles: {

@@ -27,15 +27,15 @@ A component is not necessarily a knockout component, but can be anything that ca
 - [jQuery](http://jquery.com/)
 - [Bootstrap](http://getbootstrap.com/)
 - [KnockoutJS](http://knockoutjs.com/)
-- [Knockout router](https://github.com/W3Max/knockout-router): Used to handle routing in your application.
-    - [Knockout router state push](https://github.com/W3Max/knockout-router-state-push): Used when you want push-state routing.
-    - [Knockout router state hash](https://github.com/W3Max/knockout-router-state-hash): Used when you want hash routing.
+- [Knockout router](https://github.com/W3Max/koco-router): Used to handle routing in your application.
+    - [Knockout router state push](https://github.com/W3Max/koco-router-state-push): Used when you want push-state routing.
+    - [Knockout router state hash](https://github.com/W3Max/koco-router-state-hash): Used when you want hash routing.
 
 ### Optional libraries
-- [Knockout dialoger](https://github.com/Allov/knockout-dialoger): Used to display fullscreen dialogs.
-- [Knockout modaler](https://github.com/Allov/knockout-modaler): Used to display popup 
-- [Knockout Bootstrap Validation](https://github.com/Allov/knockout-bootstrap-validation)
-- [Knockout Utilities](https://github.com/Allov/knockout-utilities) 
+- [Knockout dialoger](https://github.com/Allov/koco-dialoger): Used to display fullscreen dialogs.
+- [Knockout modaler](https://github.com/Allov/koco-modaler): Used to display popup 
+- [Knockout Bootstrap Validation](https://github.com/Allov/koco-validation)
+- [Knockout Utilities](https://github.com/Allov/koco-knockout-utilities) 
 
 ### Other librairies
 - [lodash](https://lodash.com/)
@@ -230,14 +230,14 @@ The `gulp` build files. See [Building the project](#building-the-project) for mo
 
 ### Naming components
 
-- [Dialoger](https://github.com/Allov/knockout-dialoger) will look for component named using the `-dialog` suffix.
-- [Modaler](https://github.com/Allov/knockout-modaler) will look for component named using the `-modal` suffix.
-- [Router](https://github.com/W3Max/knockout-router) will look for component named using the `-page` suffix.
-- Any component failing to follow this pattern for any reason should be registered using the [Knockout utilities](https://github.com/Allov/knockout-utilities) librairy or [knockout's](http://knockoutjs.com/documentation/component-binding.html).
+- [Dialoger](https://github.com/Allov/koco-dialoger) will look for component named using the `-dialog` suffix.
+- [Modaler](https://github.com/Allov/koco-modaler) will look for component named using the `-modal` suffix.
+- [Router](https://github.com/W3Max/koco-router) will look for component named using the `-page` suffix.
+- Any component failing to follow this pattern for any reason should be registered using the [Knockout utilities](https://github.com/Allov/koco-knockout-utilities) librairy or [knockout's](http://knockoutjs.com/documentation/component-binding.html).
 
 ### Usage of Bower and the `bower_components/` folder
 
-[Dialoger](https://github.com/Allov/knockout-dialoger), [Modaler](https://github.com/Allov/knockout-modaler) and [Router](https://github.com/W3Max/knockout-router) rely heavily on [Bower](http://bower.io) to work. In this structure, the `.bowerrc` file overrides the default bower components installation folder and put it inside the `/src` folder. This has to prevail as the majority of the modules will look for files from there.  
+[Dialoger](https://github.com/Allov/koco-dialoger), [Modaler](https://github.com/Allov/koco-modaler) and [Router](https://github.com/W3Max/koco-router) rely heavily on [Bower](http://bower.io) to work. In this structure, the `.bowerrc` file overrides the default bower components installation folder and put it inside the `/src` folder. This has to prevail as the majority of the modules will look for files from there.  
 
 ### The `components/` folder
 

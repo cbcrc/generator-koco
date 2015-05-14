@@ -17,22 +17,22 @@ var require = {
         'text': 'bower_components/requirejs-text/text',
         'lodash': 'bower_components/lodash/lodash',
         'knockout-validation': 'bower_components/knockout-validation/dist/knockout.validation',
-        'dialoger': 'bower_components/knockout-dialoger/src/dialoger',
-        'modaler': 'bower_components/knockout-modaler/src/modaler',
-        'knockout-utilities': 'bower_components/knockout-utilities/src/knockout-utilities',
-        'router-event': 'bower_components/knockout-router/src/router-event',
-        'router-state': <% if(useHash) { %>'bower_components/knockout-router-state-hash/src/router-state-hash'<% } else { %>'bower_components/koco-router/src/router-state-push'<% } %><% if(includeDemo) { %>,
+        'dialoger': 'bower_components/koco-dialoger/src/dialoger',
+        'modaler': 'bower_components/koco-modaler/src/modaler',
+        'knockout-utilities': 'bower_components/koco-knockout-utilities/src/knockout-utilities',
+        'router-event': 'bower_components/koco-router/src/router-event',
+        'router-state': <% if(useHash) { %>'bower_components/koco-router-state-hash/src/router-state-hash'<% } else { %>'bower_components/koco-router/src/router-state-push'<% } %><% if(includeDemo) { %>,
         'moment': 'bower_components/moment/moment',
         'nav-bar': 'components/nav-bar/nav-bar',
-        'knockout-i18next': 'bower_components/knockout-i18next/src/knockout-i18next',
+        'koco-i18next': 'bower_components/koco-i18next/src/koco-i18next',
         'i18next': 'bower_components/i18next/i18next.amd',
-        'knockout-mutex': 'bower_components/knockout-mutex/src/knockout-mutex',
-        'async-click-state': 'bower_components/knockout-async-click/src/async-click-state',
-        'knockout-i18next-translator': 'bower_components/knockout-i18next/src/knockout-i18next-translator'<% } %>
+        'mutex': 'bower_components/koco-mutex/src/mutex',
+        'async-click-state': 'bower_components/koco-async-click/src/async-click-state',
+        'koco-i18next-translator': 'bower_components/koco-i18next/src/koco-i18next-translator'<% } %>
     },
     packages: [
     { name: 'router',
-      location: 'bower_components/knockout-router/src',  // default 'packagename'
+      location: 'bower_components/koco-router/src',  // default 'packagename'
       main: 'router'                // default 'main'
     }],
     shim: {
