@@ -97,8 +97,8 @@ Here's the proposed directory structure for a `koco` project.
             |-- <less for your project only...>
         |-- index.html
     |-- gulpfile.js
-    |-- gulpfile.dev.js
-    |-- gulpfile.release.js
+    |-- gulpfile.local.js
+    |-- gulpfile.deploy.js
     |-- gulpfile.tests.js
 
 ## Building the project
