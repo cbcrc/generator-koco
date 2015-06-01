@@ -28,10 +28,7 @@ function rjsConfig(environment, includes, jsFiles, htmlFiles) {
             'configs-transforms': 'app/configs/configs.' + environment
         },
         include: [
-            'requireLib',
-            'bower_components/koco-router/src/router-ui',
-            'bower_components/koco-dialoger/src/dialoger-ui',
-            'bower_components/koco-modaler/src/modaler-ui',
+            'requireLib'
         ].concat(includes, jsFiles, htmlFiles),
         insertRequire: ['app/startup'],
         bundles: {

@@ -20,8 +20,14 @@ var lessFiles = [
 var htmlFiles = [
     './src/components/**/*.html'
 ];
+var bowerHtmlFiles = [
+    './src/bower_components/koco-*/src/**/*.html'
+];
 var jsFiles = [
     './src/components/**/*.js'
+];
+var bowerJsFiles = [
+    './src/bower_components/koco-*/src/**/*-ui.js'
 ];
 
 // # Custom inclusions
@@ -73,7 +79,10 @@ gulp.task('js-list', function() {
     return gulp.src(jsFiles)
         .pipe(filenames('js'));
 });
-
+gulp.task('bower-js-list', function() {
+    return gulp.src(bowerJsFiles)
+        .pipe(filenames('bowerJs'));
+});
 gulp.task('less-list', function() {
     return gulp.src(lessFiles)
         .pipe(filenames('less'));
@@ -82,4 +91,8 @@ gulp.task('less-list', function() {
 gulp.task('html-list', function() {
     return gulp.src(htmlFiles)
         .pipe(filenames('html'));
+});
+gulp.task('bower-html-list', function() {
+    return gulp.src(bowerHtmlFiles)
+        .pipe(filenames('bowerHtml'));
 });
