@@ -1,4 +1,5 @@
 {
     "port": 1337,
-    "sourceMap": true
+    "sourceMap": true,
+    "serverPath": "./src"
 }

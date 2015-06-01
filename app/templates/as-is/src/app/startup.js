@@ -15,16 +15,16 @@ define([
         'use strict';
 
         knockoutConfigurator.configure();
-	
+
 
         <% if(includeDemo) { %>knockoutI18next.init({
-            lng: 'fr',
+            lng: 'en',
             getAsync: true,
-            fallbackLng: 'fr',
-            resGetPath: 'app/locales/__lng__/__ns__.json',
+            fallbackLng: 'en',
+            resGetPath: 'app/localization/__ns__/__lng__.json',
             ns: {
-                namespaces: ['default'/*, 'another'*/],
-                defaultNs: 'default',
+                namespaces: ['global', 'components'],
+                defaultNs: 'components',
             }/*,
                 debug: true,
                 sendMissingTo: 'current'*/

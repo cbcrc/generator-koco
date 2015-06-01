@@ -61,12 +61,12 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(in
                 pageName: 'not-found'
             });
 
-            router.registerPage('rc.page.test', {
+            router.registerPage('koco-demo', {
                 isBower: true
             });
             router.addRoute(configs.baseUrl + 'test', {
                 title: 'Test',
-                pageName: 'rc.page.test'
+                pageName: 'koco-demo'
             });
             navBar.menus.push({title: 'Test', url: configs.baseUrl + 'test'});
 

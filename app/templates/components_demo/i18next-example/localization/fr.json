@@ -1,10 +1,8 @@
 {
-  "example": {
     "children": "__count__ enfant",
     "children_plural": "__count__ enfants",
     "addOneChild": "Ajouter un enfant",
     "removeOneChild": "Supprimer un enfant",
     "title": "Knockout i18next (localisation linguistique)",
     "description": "Ceci démontre l'utilisation de Knockout i18next (outil de localisation linguistique)."
-  }
 }

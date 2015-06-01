@@ -30,7 +30,7 @@
     "moment": "^2.9.0",
     "koco-async-click": "^0.2.0",
     "rc.component.image-picker": "^0.1.1",
-    "rc.page.test-page": "^0.1.0",
-    "koco-i18next": "^0.2.2"<% } %>
+    "koco-demo-page": "^0.1.2",
+    "koco-i18next": "^0.3.1"<% } %>
   }
 }

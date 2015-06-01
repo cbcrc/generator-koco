@@ -5,6 +5,7 @@
 define([
         <% if(includeDemo) { %>'components/since-binding-handler/since-binding-handler',
         'components/date-binding-handler/date-binding-handler',
+        'bower_components/koco-i18next/src/translated-text-binding-handler',
         'bower_components/koco-async-click/src/async-click-binding-handler',<% } %>
         'bower_components/koco-modaler/src/modal-binding-handler',
         'bower_components/koco-dialoger/src/dialog-binding-handler',

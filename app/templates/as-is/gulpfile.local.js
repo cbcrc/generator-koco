@@ -1,6 +1,9 @@
 // gulp dev tasks
 'use strict';
 
+// this is necessary to expose the translation task to this gulpfile
+require('gulpfile.localization');
+
 // node modules
 var open = require('open');
 
@@ -34,10 +37,14 @@ gulp.task('html', function() {
         .pipe(livereload());
 });
 
-gulp.task('watch', ['less', 'js'], function() {
+gulp.task('watch', ['less', 'js', 'html', 'localization'], function() {
     gulp.watch(['./src/**/*.less'], ['less']);
     gulp.watch(['./src/**/*.js'], ['js']);
     gulp.watch(['./src/**/*.html'], ['html']);
+    gulp.watch([
+        './src/components/**/localization/**/*.json',
+        './src/bower_components/koco-*/localization/**/*.json'
+    ], ['localization']);
 });
 
 gulp.task('local', ['watch'], function(callback) {

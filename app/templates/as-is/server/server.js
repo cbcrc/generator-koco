@@ -39,7 +39,8 @@ function Server() {
 
     //TODO: https://github.com/jonathandelgado/SublimeTodoReview (1)
     //TODO: Ici on sert le contenu du site!? (meme serveur pour l'api et le site?.. pourquoi pas?) (2) @patate
-    this.expressApp.use('<%= baseUrl %>', express.static('./src'));
+    gutil.log('Serving files from ' + gutil.colors.green(configManager.get('serverPath')));
+    this.expressApp.use('<%= baseUrl %>', express.static(configManager.get('serverPath')));
 }
 
 Server.prototype.start = function(callback) {

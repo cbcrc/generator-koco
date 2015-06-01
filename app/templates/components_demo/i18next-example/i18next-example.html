@@ -1,16 +1,16 @@
-<h2 class="page-header" data-bind="text: t('example.title')"></h2>
-<p data-bind="text: t('example.description')"></p>
+<h2 class="page-header" data-bind="translatedText: 'i18next-example.title'"></h2>
+<p data-bind="translatedText: 'i18next-example.description'"></p>
 <div class="row">
-	<h4 style="margin-left: 16px" data-bind="text: t('unique_name','example.children', { count: count })"></h4>
+	<h4 style="margin-left: 16px" data-bind="translatedText: 'i18next-example.children', translatedTextOptions: { count: count }"></h4>
 </div>
 <div class="row">
     <div class="col-md-2">
         <button class="btn btn-primary" data-bind="click: changeLng.bind($data, switchLang()), text: switchLangTitle"></button>
     </div>
     <div class="col-md-2">
-        <button class="btn btn-primary" data-bind="click: incrementCount, text: t('example.addOneChild')"></button>
+        <button class="btn btn-primary" data-bind="click: incrementCount, translatedText: 'i18next-example.addOneChild'"></button>
     </div>
     <div class="col-md-2">
-        <button class="btn btn-primary" data-bind="click: decrementCount, text: t('example.removeOneChild')"></button>
+        <button class="btn btn-primary" data-bind="click: decrementCount, translatedText: 'i18next-example.removeOneChild'"></button>
     </div>
 </div>
