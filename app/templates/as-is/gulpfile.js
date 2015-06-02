@@ -47,7 +47,7 @@ global.includes = [
 global.folders = [
 <% if (includeDemo) { %>
     './src/bower_components/rc.component.image-picker/src/images/**/*',
-    './src/app/localization/**/*',
+    './src/localization/**/*',
 <% } %>
 <% if (useVisualStudio) { %>
     './src/web.config',

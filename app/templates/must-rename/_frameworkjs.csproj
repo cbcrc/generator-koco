@@ -49,10 +49,10 @@
     <Content Include="README.md" />
     <Content Include="src\less\styles.less" />
     <Content Include="src\less\variables.less" /><% if (includeDemo) { %>
-    <Content Include="src\app\localization\components\en.json" />
-    <Content Include="src\app\localization\components\fr.json" />
-    <Content Include="src\app\localization\global\en.json" />
-    <Content Include="src\app\localization\global\fr.json" /><% } %>
+    <Content Include="src\localization\components\en.json" />
+    <Content Include="src\localization\components\fr.json" />
+    <Content Include="src\localization\global\en.json" />
+    <Content Include="src\localization\global\fr.json" /><% } %>
     <Content Include="tests\components\home-page.js" />
     <Content Include="tests\index.html" />
     <Content Include="tests\require.config.js" />

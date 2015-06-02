@@ -6,7 +6,9 @@ var path = require('path');
 function ConfigManager() {
 	var fileName;
 
-    switch (process.env.NODE_ENV) {
+  var env = global.buildEnv || process.env.NODE_ENV;
+
+    switch (env) {
         case 'tests':
             fileName = 'testConfig.json';
             break;
@@ -27,4 +29,4 @@ function ConfigManager() {
     return nconf;
 }
 
-module.exports = exports = new ConfigManager();
+module.exports = exports =  ConfigManager;

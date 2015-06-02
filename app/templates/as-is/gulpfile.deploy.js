@@ -5,9 +5,16 @@
 // ******** Release build
 //
 
+// this is necessary to expose the translation task to this gulpfile
+require('gulpfile.localization');
+
+// local libs
+var Server = require('server/server');
+
 // node modules
 var _ = require('lodash');
 var del = require('del');
+var open = require('open');
 
 // gulp plugins
 var gulp = require('gulp');
@@ -84,14 +91,19 @@ gulp.task('deploy-css', ['clean'], function() {
         .pipe(gulp.dest(''));
 });
 
+gulp.task('deploy-localization', ['clean', 'localization'], function() {
+    return gulp.src('./src/localization/**/*.json')
+        .pipe(gulp.dest(distFolder + '/localization'));
+});
+
 // Copies index.html, replacing <script> and <link> tags to reference production URLs
-gulp.task('deploy-html', ['deploy-js', 'deploy-css'], function() {
+gulp.task('deploy-html', ['deploy-js', 'deploy-css', 'deploy-localization'], function() {
     var manifest = gulp.src(revManifest);
 
     return gulp.src('./src/index.html')
         .pipe(htmlreplace({
-            'css': '<%= baseUrl %>styles.css',
-            'js': '<%= baseUrl %>scripts.js'
+            'css': 'styles.css',
+            'js': 'scripts.js'
         }))
         .pipe(revReplace({
             manifest: manifest,
@@ -101,6 +113,25 @@ gulp.task('deploy-html', ['deploy-js', 'deploy-css'], function() {
 });
 
 gulp.task('deploy', ['deploy-html', 'deploy-folders'], function(callback) {
-    callback();
     gutil.log('Placed optimized files in ' + gutil.colors.magenta(distFolder + '/\n'));
+
+    if (gutil.env.serve) {
+
+        global.buildEnv = 'production';
+        var log = gutil.log;
+        var colors = gutil.colors;
+
+        new Server().start(function(err, url) {
+            //TODO: Handle err
+
+            if (gutil.env.open) {
+                log('Opening ' + colors.green('dist') + ' server URL in browser');
+                open(url);
+            } else {
+                log(colors.gray('(Run with --open to automatically open URL on startup)'));
+            }
+
+            callback(); // we're done with this task for now
+        });
+    }
 });

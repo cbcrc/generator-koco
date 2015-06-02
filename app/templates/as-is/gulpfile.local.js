@@ -16,7 +16,7 @@ var watch = require('gulp-watch');
 var gutil = require('gulp-util');
 
 // local libs
-var server = require('server/server');
+var Server = require('server/server');
 
 gulp.task('less', function() {
     gulp.src('./src/less/styles.less')
@@ -51,7 +51,7 @@ gulp.task('local', ['watch'], function(callback) {
     var log = gutil.log;
     var colors = gutil.colors;
 
-    server.start(function(err, url) {
+    new Server().start(function(err, url) {
         //TODO: Handle err
 
         if (gutil.env.open) {

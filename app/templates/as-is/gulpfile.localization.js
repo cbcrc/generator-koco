@@ -12,7 +12,6 @@ var gulp = require('gulp');
 var data = require('gulp-data');
 var through = require('through2');
 var gutil = require('gulp-util');
-var livereload = require('gulp-livereload');
 var path = require('path');
 
 // this variable will hold all localization extracted from ./src/components/**/localization/*.json & ./src/bower_components/koco-*/localization/*.json files
@@ -71,16 +70,14 @@ gulp.task('loadLocalization', function() {
             localization[lng][componentName] = file.data;
 
             cb(null, file);
-        }))
-        .pipe(livereload());
+        }));
 });
 
 // this task depends loadLocalization. It will start only after loadLocalization has finished running
 gulp.task('localization', ['loadLocalization'], function(cb) {
     _.each(localization, function(content, lng) {
         createFileStream(lng + '.json', JSON.stringify(localization[lng]))
-            .pipe(gulp.dest('./src/app/localization/components/'))
-            .pipe(livereload());
+            .pipe(gulp.dest('./src/localization/components/'));
     });
 
     cb();

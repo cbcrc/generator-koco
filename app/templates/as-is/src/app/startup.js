@@ -21,7 +21,7 @@ define([
             lng: 'en',
             getAsync: true,
             fallbackLng: 'en',
-            resGetPath: 'app/localization/__ns__/__lng__.json',
+            resGetPath: 'localization/__ns__/__lng__.json',
             ns: {
                 namespaces: ['global', 'components'],
                 defaultNs: 'components',
