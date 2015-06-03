@@ -36,19 +36,10 @@ var bowerJsFiles = [
 //  1. has not been already defined in the `require.config.js` `paths` property.
 //  2. is NOT in the `components/` folder.
 //
-global.includes = [
-<% if (includeDemo) { %>
-    'bower_components/rc.component.image-picker/src/rc.component.image-picker-ui',
-    'bower_components/rc.component.image-picker/src/images-dialog-ui'
-<% } %>
-];
+global.includes = [];
 
 // Add any folder to be copied over the release target. Folder hierarchy will remain.
 global.folders = [
-<% if (includeDemo) { %>
-    './src/bower_components/rc.component.image-picker/src/images/**/*',
-    './src/localization/**/*',
-<% } %>
 <% if (useVisualStudio) { %>
     './src/web.config',
 <% } %>

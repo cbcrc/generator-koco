@@ -17,7 +17,7 @@ define(['knockout-utilities', 'router', 'dialoger', 'modaler', 'configs'<% if(in
 
             koUtilities.registerComponent('i18next-example');
 
-            koUtilities.registerComponent('rc.component.image-picker', {
+            koUtilities.registerComponent('koco-demo-image-picker', {
                 isBower: true
             });
 

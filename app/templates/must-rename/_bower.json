@@ -29,7 +29,7 @@
     "fontawesome": "^4.2.0"<% if(includeDemo) { %>,
     "moment": "^2.9.0",
     "koco-async-click": "^0.2.0",
-    "rc.component.image-picker": "^0.1.1",
+    "koco-demo-image-picker": "^0.1.0",
     "koco-demo-page": "^0.1.2",
     "koco-i18next": "^0.3.1"<% } %>
   }
