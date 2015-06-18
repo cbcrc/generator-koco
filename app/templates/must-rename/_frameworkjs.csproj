@@ -70,7 +70,6 @@
     <Content Include="configuration\configManager.js" />
     <Content Include="gulpfile.js" />
     <Content Include="log.js" />
-    <Content Include="server\server.js" />
     <Content Include="src\app\components.js" />
     <Content Include="src\app\configs\configs.development.js" />
     <Content Include="src\app\configs\configs.js" />

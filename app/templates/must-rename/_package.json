@@ -44,7 +44,8 @@
     "requirejs": "^2.1.11",
     "stream": "0.0.2",
     "through2": "^0.6.5",
-    "winston": "^0.8.3"
+    "winston": "^0.8.3",
+    "koco-server": "^0.1.0"
   },
   "dependencies": {}
 }

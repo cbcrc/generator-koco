@@ -30,6 +30,8 @@ gulp.task('tests', ['watch_tests'], function(callback) {
     var log = gutil.log;
     var colors = gutil.colors;
 
+
+    //TODO: Utiliser koco-server
     testsServer.start(function(err, url) {
         //TODO: Handle err
 

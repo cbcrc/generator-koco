@@ -8,8 +8,7 @@
 // this is necessary to expose the translation task to this gulpfile
 require('gulpfile.localization');
 
-// local libs
-var Server = require('server/server');
+var Server = require('koco-server').Server;
 
 // node modules
 var _ = require('lodash');
@@ -121,14 +120,23 @@ gulp.task('deploy', ['deploy-html', 'deploy-folders'], function(callback) {
         var log = gutil.log;
         var colors = gutil.colors;
 
-        new Server().start(function(err, url) {
-            //TODO: Handle err
+        var configManager = new require('./configuration/configManager')();
 
-            if (gutil.env.open) {
-                log('Opening ' + colors.green('dist') + ' server URL in browser');
-                open(url);
+        var server = new Server({
+            dir: configManager.get('serverPath'),
+            root: '<%= baseUrl %>'
+        });
+
+        server.listen(+configManager.get('port'), function(err) {
+            if (err) {
+                gutil.error(err);
             } else {
-                log(colors.gray('(Run with --open to automatically open URL on startup)'));
+                if (gutil.env.open) {
+                    log('Opening ' + colors.green('dist') + ' server URL in browser');
+                    open(server.getUrl());
+                } else {
+                    log(colors.gray('(Run with --open to automatically open URL on startup)'));
+                }
             }
 
             callback(); // we're done with this task for now

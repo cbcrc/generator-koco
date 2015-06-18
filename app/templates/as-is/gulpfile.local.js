@@ -14,9 +14,8 @@ var less = require('gulp-less');
 var livereload = require('gulp-livereload');
 var watch = require('gulp-watch');
 var gutil = require('gulp-util');
+var Server = require('koco-server').Server;
 
-// local libs
-var Server = require('server/server');
 
 gulp.task('less', function() {
     gulp.src('./src/less/styles.less')
@@ -51,14 +50,23 @@ gulp.task('local', ['watch'], function(callback) {
     var log = gutil.log;
     var colors = gutil.colors;
 
-    new Server().start(function(err, url) {
-        //TODO: Handle err
+    var configManager = new require('./configuration/configManager')();
 
-        if (gutil.env.open) {
-            log('Opening ' + colors.green('local') + ' server URL in browser');
-            open(url);
+    var server = new Server({
+        dir: configManager.get('serverPath'),
+        root: '<%= baseUrl %>'
+    });
+
+    server.listen(+configManager.get('port'), function(err) {
+      if (err) {
+            gutil.error(err);
         } else {
-            log(colors.gray('(Run with --open to automatically open URL on startup)'));
+            if (gutil.env.open) {
+                log('Opening ' + colors.green('local') + ' server URL in browser');
+                open(server.getUrl());
+            } else {
+                log(colors.gray('(Run with --open to automatically open URL on startup)'));
+            }
         }
 
         callback(); // we're done with this task for now
