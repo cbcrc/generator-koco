@@ -37,16 +37,12 @@ function createFileStream(filename, string) {
     return src;
 }
 
-function getComponentNameFromPath(path, lng) {
-    var myRegexp = new RegExp('\\\\([^\\\\]*)\\\\localization\\\\' + lng + '\\.json$', 'i');
-    var match = myRegexp.exec(path);
-    var result = null;
+function getComponentNameFromPath(incomingPath, lng) {
 
-    if (match && match.length > 1) {
-        result = match[1];
-    }
+   var splitPath = incomingPath.split(path.sep);
+   var suspectedComponentName = splitPath[splitPath.indexOf('localization') - 1];
+   return (suspectedComponentName != '') ? suspectedComponentName : null;
 
-    return result;
 }
 
 // this task set the localization variable with the content of all components' localization
