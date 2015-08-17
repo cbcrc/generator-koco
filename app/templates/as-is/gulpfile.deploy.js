@@ -114,7 +114,7 @@ gulp.task('deploy-html', ['deploy-js', 'deploy-css', 'deploy-localization'], fun
 gulp.task('deploy', ['deploy-html', 'deploy-folders'], function(callback) {
     gutil.log('Placed optimized files in ' + gutil.colors.magenta(distFolder + '/\n'));
 
-    if (gutil.env.serve) {
+    if (gutil.env.serve || gutil.env.open) {
 
         global.buildEnv = 'production';
         var log = gutil.log;

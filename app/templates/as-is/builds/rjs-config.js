@@ -4,6 +4,9 @@ var fs = require('fs');
 var vm = require('vm');
 var _ = require('lodash');
 var merge = require('deeply');
+var babel = require('babel-core');
+var babelHelper = require('./../configuration/babel-config');
+var path = require('path');
 
 // local libs
 
@@ -36,6 +39,19 @@ function rjsConfig(environment, includes, jsFiles, htmlFiles) {
             // above, and group them into bundles here.
             // 'bundle-name': [ 'some/module', 'another/module' ],
             // 'another-bundle-name': [ 'yet-another-module' ]
+        },
+        onBuildRead: function(moduleName, filePath, contents) {
+            //todo: seulement certains fichiers (o doit exlcure jquery, bootstrap, knockout, etc...
+            //seulement avec path koco dans bower-components + fichiers dans app & components)
+
+            var relativeFilePath =  filePath.replace(path.resolve('./src').replace(/\\/g,'/') + '/', '');
+
+            if (contents && babelHelper.mustBeBabelified(relativeFilePath)) {
+                return babel.transform(contents).code;
+            }
+
+            return contents;
+
         }
     });
 
