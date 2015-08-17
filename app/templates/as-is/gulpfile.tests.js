@@ -7,7 +7,6 @@ var open = require('open');
 // gulp plugins
 var gulp = require('gulp');
 var livereload = require('gulp-livereload');
-var watch = require('gulp-watch');
 var gutil = require('gulp-util');
 
 // local libs

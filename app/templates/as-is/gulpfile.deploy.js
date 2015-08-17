@@ -26,7 +26,6 @@ var less = require('gulp-less');
 var minify = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
-var debug = require('gulp-debug');
 
 // local libs
 var optimizer = require('builds/rjs-config');

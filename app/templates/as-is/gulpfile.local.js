@@ -19,7 +19,8 @@ var fs = require('fs-extra');
 var path = require('path');
 var del = require('del');
 var babel = require('babel-core');
-var babelHelper = require('./configuration/babel-config');
+var babelConfig = require('./configuration/babel-config');
+var recursiveReadSync = require('recursive-readdir-sync');
 
 var fromDir = 'src';
 var toDir = 'dev';
@@ -73,9 +74,8 @@ var getDestFilePath = function(srcFile) {
 };
 
 var doIt = function(srcFilePath, destFilePath) {
-    //todo: meilleur filtre!
-    if (babelHelper.mustBeBabelified(srcFilePath)) {
-        gutil.log(gutil.colors.red('doingIt: BABEL!'));
+    if (babelConfig.mustBeBabelified(srcFilePath)) {
+        gutil.log(gutil.colors.red('doing it: BABEL!'));
         var srcFileContent = fs.readFileSync(srcFilePath).toString();
         var babelifiedContent = babel.transform(srcFileContent).code;
         fs.writeFileSync(destFilePath, babelifiedContent);
@@ -163,8 +163,36 @@ function startFolderSynchronization() {
     ;
 }
 
+function babelifyCopiedFiles() {
+    var files;
+
+    try {
+        files = recursiveReadSync(toDir);
+    } catch (err) {
+        if (err.errno === 34) {
+            console.log('Path does not exist');
+        } else {
+            //something unrelated went wrong, rethrow
+            throw err;
+        }
+    }
+
+    //loop over resulting files
+    for (var i = 0, len = files.length; i < len; i++) {
+        var filePath = files[i];
+
+        if (babelConfig.mustBeBabelified(filePath.replace('dev' + path.sep,''))) {
+            var srcFileContent = fs.readFileSync(filePath).toString();
+            var babelifiedContent = babel.transform(srcFileContent).code;
+            fs.writeFileSync(filePath, babelifiedContent);
+        }
+        //console.log('Found: %s', files[i]);
+    }
+}
+
 gulp.task('local', ['watch', 'clean'], function(callback) {
     fs.copySync(fromDir, toDir);
+    babelifyCopiedFiles();
     startFolderSynchronization();
     var log = gutil.log;
     var colors = gutil.colors;
@@ -173,11 +201,11 @@ gulp.task('local', ['watch', 'clean'], function(callback) {
 
     var server = new Server({
         dir: configManager.get('serverPath'),
-        root: '<%= baseUrl %>'
+        root: '/'
     });
 
     server.listen(+configManager.get('port'), function(err) {
-      if (err) {
+        if (err) {
             gutil.error(err);
         } else {
             if (gutil.env.open) {

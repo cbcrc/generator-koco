@@ -42,6 +42,8 @@ global.includes = [];
 global.folders = [
 <% if (useVisualStudio) { %>
     './src/web.config',
+<% } %><% if(includeDemo) { %>
+    './src/bower_components/koco-demo-image-picker/src/images/**/*',
 <% } %>
     './src/bower_components/fontawesome/fonts/**/*'
 ];
