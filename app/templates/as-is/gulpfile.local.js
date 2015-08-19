@@ -6,6 +6,12 @@ require('gulpfile.localization');
 
 // node modules
 var open = require('open');
+var Server = require('koco-server').Server;
+var cp = require('child_process');
+var configManager = new require('./configuration/configManager')();
+
+// node child processes
+var babelSyncFolder = cp.fork('./babel-sync-folders');
 
 // gulp plugins
 var gulp = require('gulp');
@@ -13,194 +19,57 @@ var sourcemaps = require('gulp-sourcemaps');
 var less = require('gulp-less');
 var livereload = require('gulp-livereload');
 var gutil = require('gulp-util');
-var Server = require('koco-server').Server;
-var chokidar = require('chokidar');
-var fs = require('fs-extra');
-var path = require('path');
-var del = require('del');
-var babel = require('babel-core');
-var babelConfig = require('./configuration/babel-config');
-var recursiveReadSync = require('recursive-readdir-sync');
+var gulpSequence = require('gulp-sequence');
 
-var fromDir = 'src';
-var toDir = 'dev';
-var destFilePath;
 
-gulp.task('clean', function(cb) {
-    del([toDir], cb);
-});
-
+var serverPath = configManager.get('serverPath');
 
 gulp.task('less', function() {
-    gulp.src('./src/less/styles.less')
+    gulp.src(serverPath + '/less/styles.less')
         .pipe(sourcemaps.init())
         .pipe(less().on('error', gutil.log))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./src/css'))
+        .pipe(gulp.dest(serverPath + '/css'))
         .pipe(livereload());
 });
 
 gulp.task('js', function() {
-    return gulp.src(['./src/**/*.js'])
+    return gulp.src([serverPath + '/**/*.js'])
         .pipe(livereload());
 });
 
 gulp.task('html', function() {
-    gulp.src(['./src/**/*.html'])
+    gulp.src([serverPath + '/**/*.html'])
         .pipe(livereload());
 });
 
-gulp.task('watch', ['less', 'js', 'html', 'localization'], function() {
-    gulp.watch(['./src/**/*.less'], ['less']);
-    gulp.watch(['./src/**/*.js'], ['js']);
-    gulp.watch(['./src/**/*.html'], ['html']);
+gulp.task('watching', ['less', 'js', 'html', 'localization'], function() {
+    livereload.listen();
+    gulp.watch([serverPath + '/**/*.less'], ['less']);
+    gulp.watch([serverPath + '/**/*.js'], ['js']);
+    gulp.watch([serverPath + '/**/*.html'], ['html']);
     gulp.watch([
-        './src/components/**/localization/**/*.json',
-        './src/bower_components/koco-*/localization/**/*.json'
+        serverPath + '/components/**/localization/**/*.json',
+        serverPath + '/bower_components/koco-*/localization/**/*.json'
     ], ['localization']);
 });
 
-var compareMtime = function(src, target) {
-    var isNewer;
-    isNewer = true;
-    if (fs.existsSync(target)) {
-        isNewer = fs.statSync(src).mtime > fs.statSync(target).mtime;
-    }
-    return isNewer;
-};
-
-var getDestFilePath = function(srcFile) {
-    return path.join(toDir, path.relative(fromDir, srcFile));
-};
-
-var doIt = function(srcFilePath, destFilePath) {
-    if (babelConfig.mustBeBabelified(srcFilePath)) {
-        gutil.log(gutil.colors.red('doing it: BABEL!'));
-        var srcFileContent = fs.readFileSync(srcFilePath).toString();
-        var babelifiedContent = babel.transform(srcFileContent).code;
-        fs.writeFileSync(destFilePath, babelifiedContent);
-    } else {
-        fs.copySync(srcFilePath, destFilePath);
-    }
-};
-
-function startFolderSynchronization() {
-    var watcher = chokidar.watch('./src', {
-            ignored: /[\/\\]\./
-        })
-        /*.on('all', function(event, path) {
-                console.log(event, path);
-            })*/
-    ;
-
-    var log = console.log.bind(console);
-
-
-
-    watcher
-        .on('add', function(srcFilePath) {
-            //log('File', srcFilePath, 'has been added');
-
-            destFilePath = getDestFilePath(srcFilePath);
-
-            if (!fs.existsSync(destFilePath)) {
-                gutil.log(gutil.colors.green('add: ' + srcFilePath + ' > ' + destFilePath));
-                doIt(srcFilePath, destFilePath);
-            }
-        })
-        .on('change', function(srcFilePath) {
-            //log('File', srcFilePath, 'has been changed');
-
-            destFilePath = getDestFilePath(srcFilePath);
-
-            if (compareMtime(srcFilePath, destFilePath)) {
-                gutil.log(gutil.colors.green('change: ' + srcFilePath + ' > ' + destFilePath));
-                doIt(srcFilePath, destFilePath);
-            }
-        })
-        .on('unlink', function(srcFilePath) {
-            //log('File', srcFilePath, 'has been removed');
-
-            destFilePath = getDestFilePath(srcFilePath);
-
-            if (fs.existsSync(destFilePath)) {
-                gutil.log(gutil.colors.green('delete: ' + destFilePath));
-                fs.removeSync(destFilePath);
-            }
-        })
-        // More events.
-        .on('addDir', function(srcFilePath) {
-            //log('Directory', srcFilePath, 'has been added');
-
-            destFilePath = getDestFilePath(srcFilePath);
-
-            if (!fs.existsSync(destFilePath)) {
-                gutil.log(gutil.colors.green('mkdir: ' + destFilePath));
-                fs.mkdirSync(destFilePath);
-            }
-        })
-        .on('unlinkDir', function(srcFilePath) {
-            //log('Directory', srcFilePath, 'has been removed');
-
-            destFilePath = getDestFilePath(srcFilePath);
-
-            if (fs.existsSync(destFilePath)) {
-                gutil.log(gutil.colors.green('rmdir: ' + destFilePath));
-                return fs.removeSync(destFilePath, {
-                    'force': true
-                });
-            }
-        })
-        .on('error', function(error) {
-            log('Error happened', error);
-        })
-        /*.on('ready', function() {
-            log('Initial scan complete. Ready for changes.');
-        })
-        .on('raw', function(event, srcFilePath, details) {
-            log('Raw event info:', event, srcFilePath, details);
-        })*/
-    ;
-}
-
-function babelifyCopiedFiles() {
-    var files;
-
-    try {
-        files = recursiveReadSync(toDir);
-    } catch (err) {
-        if (err.errno === 34) {
-            console.log('Path does not exist');
-        } else {
-            //something unrelated went wrong, rethrow
-            throw err;
+gulp.task('babel', function(done) {
+    babelSyncFolder.on('message', function(m) {
+        if(m === 'ready'){
+            done();
         }
-    }
+    });
 
-    //loop over resulting files
-    for (var i = 0, len = files.length; i < len; i++) {
-        var filePath = files[i];
+    babelSyncFolder.send('start');
+});
 
-        if (babelConfig.mustBeBabelified(filePath.replace('dev' + path.sep,''))) {
-            var srcFileContent = fs.readFileSync(filePath).toString();
-            var babelifiedContent = babel.transform(srcFileContent).code;
-            fs.writeFileSync(filePath, babelifiedContent);
-        }
-        //console.log('Found: %s', files[i]);
-    }
-}
+gulp.task('watch', gulpSequence('babel', 'watching'));
 
-gulp.task('local', ['watch', 'clean'], function(callback) {
-    fs.copySync(fromDir, toDir);
-    babelifyCopiedFiles();
-    startFolderSynchronization();
-    var log = gutil.log;
-    var colors = gutil.colors;
-
-    var configManager = new require('./configuration/configManager')();
+gulp.task('local', ['watch'], function(done) {
 
     var server = new Server({
-        dir: configManager.get('serverPath'),
+        dir: serverPath,
         root: '/'
     });
 
@@ -209,14 +78,14 @@ gulp.task('local', ['watch', 'clean'], function(callback) {
             gutil.error(err);
         } else {
             if (gutil.env.open) {
-                log('Opening ' + colors.green('local') + ' server URL in browser');
+                gutil.log('Opening ' + gutil.colors.green('local') + ' server URL in browser');
                 open(server.getUrl());
             } else {
-                log(colors.gray('(Run with --open to automatically open URL on startup)'));
+                gutil.log(gutil.colors.gray('(Run with --open to automatically open URL on startup)'));
             }
         }
 
-        callback(); // we're done with this task for now
+        done(); // we're done with this task for now
     });
 });
 

@@ -184,3 +184,6 @@ FakesAssemblies/
 /build-dev
 /src/css/styles.css
 /*.sublime-workspace
+
+/tmp
+/dev

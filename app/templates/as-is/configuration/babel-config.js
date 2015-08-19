@@ -28,5 +28,6 @@ var mustBeBabelified = function(srcFilePath) {
 };
 
 module.exports = {
-    mustBeBabelified: mustBeBabelified
+    mustBeBabelified: mustBeBabelified,
+    options: {}
 };
