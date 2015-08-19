@@ -315,8 +315,7 @@ process.on('message', function(m) {
         async.series([
             cleanBabelSyncedFiles,
             copyBabelSyncedFiles,
-            babelifyBabelSyncedFiles,
-            babelSync
+            babelifyBabelSyncedFiles
         ], function(err) {
             if (err) {
                 logError('babel-sync-folder error:' + err);
