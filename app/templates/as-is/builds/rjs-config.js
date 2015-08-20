@@ -25,6 +25,7 @@ function rjsConfig(environment, includes, jsFiles, htmlFiles) {
         out: 'scripts.js',
         baseUrl: './src',
         name: 'app/startup',
+        useStrict: true,
         paths: {
             requireLib: 'bower_components/requirejs/require',
             'configs-transforms': 'app/configs/configs.' + environment

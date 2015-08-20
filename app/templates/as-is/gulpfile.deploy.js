@@ -19,7 +19,6 @@ var open = require('open');
 var gulp = require('gulp');
 var filenames = require('gulp-filenames');
 var gutil = require('gulp-util');
-var rjs = require('gulp-requirejs-bundler');
 var uglify = require('gulp-uglify');
 var htmlreplace = require('gulp-html-replace');
 var less = require('gulp-less');
@@ -28,7 +27,8 @@ var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 
 // local libs
-var optimizer = require('builds/rjs-config');
+var rjs = require('builds/gulp-requirejs-bundler');
+var rjsConfig = require('builds/rjs-config');
 
 var distFolder = 'dist';
 var revManifest = 'rev-manifest.json';
@@ -56,7 +56,9 @@ gulp.task('deploy-js', ['clean', 'environment', 'js-list', 'bower-js-list', 'htm
         return 'text!bower_components/' + f.replace(/\\/g, '/');
     });
 
-    return rjs(optimizer(process.env.configEnv, global.includes, requiredJsFiles.concat(requiredBowerJsFiles), requiredHtmlFiles.concat(requireBowerHtmlFiles)))
+    var rjsOptions = rjsConfig(process.env.configEnv, global.includes, requiredJsFiles.concat(requiredBowerJsFiles), requiredHtmlFiles.concat(requireBowerHtmlFiles));
+
+    return rjs(rjsOptions)
         .pipe(uglify({
             preserveComments: 'some'
         }))
@@ -116,8 +118,6 @@ gulp.task('deploy', ['deploy-html', 'deploy-folders'], function(callback) {
     if (gutil.env.serve || gutil.env.open) {
 
         global.buildEnv = 'production';
-        var log = gutil.log;
-        var colors = gutil.colors;
 
         var configManager = new require('./configuration/configManager')();
 
@@ -131,14 +131,16 @@ gulp.task('deploy', ['deploy-html', 'deploy-folders'], function(callback) {
                 gutil.error(err);
             } else {
                 if (gutil.env.open) {
-                    log('Opening ' + colors.green('dist') + ' server URL in browser');
+                    gutil.log('Opening ' + gutil.colors.green('dist') + ' server URL in browser');
                     open(server.getUrl());
                 } else {
-                    log(colors.gray('(Run with --open to automatically open URL on startup)'));
+                    gutil.log(gutil.colors.gray('(Run with --open to automatically open URL on startup)'));
                 }
             }
 
             callback(); // we're done with this task for now
         });
+    } else {
+        callback();
     }
 });

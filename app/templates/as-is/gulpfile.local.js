@@ -10,8 +10,6 @@ var Server = require('koco-server').Server;
 var cp = require('child_process');
 var configManager = new require('./configuration/configManager')();
 
-// node child processes
-var babelSyncFolder = cp.fork('./babel-sync-folders');
 
 // gulp plugins
 var gulp = require('gulp');
@@ -55,6 +53,7 @@ gulp.task('watching', ['less', 'js', 'html', 'localization'], function() {
 });
 
 gulp.task('babel', function(done) {
+  var babelSyncFolder = cp.fork('./babel-sync-folders');
     babelSyncFolder.on('message', function(m) {
         if(m === 'ready'){
             done();
