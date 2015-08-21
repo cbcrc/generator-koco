@@ -45,6 +45,13 @@ var getDestFilePath = function(srcFile) {
     return path.join(toDir, path.relative(fromDir, srcFile));
 };
 
+var copyBabelPolyfill = function(callback) {
+    var polyfillPath = 'node_modules/babel-core/browser-polyfill.js';
+    fs.copy(polyfillPath, path.join(toDir, polyfillPath), {
+        clobber: true
+    }, callback);
+};
+
 var babelify = function() {
 
     var srcFilePath = arguments[0];

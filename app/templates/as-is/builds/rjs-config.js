@@ -31,7 +31,8 @@ function rjsConfig(environment, includes, jsFiles, htmlFiles) {
             'configs-transforms': 'app/configs/configs.' + environment
         },
         include: [
-            'requireLib'
+            'requireLib',
+            '../node_modules/babel-core/browser-polyfill'
         ].concat(includes, jsFiles, htmlFiles),
         insertRequire: ['app/startup'],
         bundles: {
