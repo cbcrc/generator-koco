@@ -322,6 +322,7 @@ process.on('message', function(m) {
         async.series([
             cleanBabelSyncedFiles,
             copyBabelSyncedFiles,
+            copyBabelPolyfill,
             babelifyBabelSyncedFiles
         ], function(err) {
             if (err) {
