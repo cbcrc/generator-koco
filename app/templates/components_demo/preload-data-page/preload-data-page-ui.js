@@ -5,6 +5,14 @@ define(['text!./preload-data-page.html'],
         var ViewModel = function(context /*, componentInfo*/ ) {
             var self = this;
 
+            self.isDialog = context.isDialog;
+
+            if(self.isDialog){
+                self.title = context.title;
+            }
+
+            self.close = context.close;
+
             // Since we're using an activator, a 'message' property has been added to the context and can be used here.
             self.message = context.message;
 

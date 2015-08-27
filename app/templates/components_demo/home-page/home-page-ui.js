@@ -1,5 +1,5 @@
-define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
-    function(template, dialoger, ko, modaler, $) {
+define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery', 'configs'],
+    function(template, dialoger, ko, modaler, $, configs) {
         'use strict';
 
         var ViewModel = function(settings, componentInfo) {
@@ -25,6 +25,14 @@ define(['text!./home-page.html', 'dialoger', 'knockout', 'modaler', 'jquery'],
             self.openDialog = function() {
                 dialoger.show('test').then(function() {
                     self.openDialogFocused(true);
+                });
+            };
+
+            // Opening a page dialog.
+            self.openPageDialogFocused = ko.observable(false);
+            self.openPageDialog = function() {
+                dialoger.showPage(configs.baseUrl + 'preload').then(function() {
+                    self.openPageDialogFocused(true);
                 });
             };
 
