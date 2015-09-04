@@ -6,9 +6,14 @@
 </div>
 <!-- /ko -->
 <div class="container">
-	<h1 class="page-header">Using an activator</h1>
-	<p>This is an example of using an activator to load data synchronously before displaying the page.</p>
-	<p class="well" data-bind="html: message"></p>
+    <h1 class="page-header">Using an activator</h1>
+    <p>This is an example of using an activator to load data synchronously before displaying the page.</p>
+    <p class="well" data-bind="html: message"></p>
+    <!-- ko if: isDialog -->
+    <h2 class="page-header">Dialog example (using dialoger opener)</h2>
+    <p>This will open the same dialog as above using the dialoger opener. The advantage is that you don't have to handle the focus.</p>
+    <button class="btn btn-primary" data-bind="dialog: 'test'">Open dialog!</button>
+    <!-- /ko -->
 </div>
 <!-- ko if: isDialog -->
 <nav class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
@@ -19,4 +24,4 @@
         </button>
     </div>
 </nav>
- <!-- /ko -->
+<!-- /ko -->

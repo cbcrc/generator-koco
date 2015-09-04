@@ -1,4 +1,4 @@
-define(["text!./test-dialog.html", "knockout"], function(template, ko) {
+define(["text!./test-dialog.html", "knockout", 'dialoger', 'configs'], function(template, ko, dialoger, configs) {
     var ViewModel = function(params, componentInfo) {
         var self = this;
 
@@ -7,6 +7,14 @@ define(["text!./test-dialog.html", "knockout"], function(template, ko) {
         self.close = function() {
             params.close();
         };
+
+        // Opening a page dialog.
+            self.openPageDialogFocused = ko.observable(false);
+            self.openPageDialog = function() {
+                dialoger.showPage(configs.baseUrl + 'about').then(function() {
+                    self.openPageDialogFocused(true);
+                });
+            };
     };
 
     return {
